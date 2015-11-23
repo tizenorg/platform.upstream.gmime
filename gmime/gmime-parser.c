@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*  GMime
- *  Copyright (C) 2000-2012 Jeffrey Stedfast
+ *  Copyright (C) 2000-2014 Jeffrey Stedfast
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public License
@@ -127,7 +127,7 @@ struct _GMimeParserPrivate {
 	gint64 offset;
 	
 	/* i/o buffers */
-	char realbuf[SCAN_HEAD + SCAN_BUF + 1];
+	char realbuf[SCAN_HEAD + SCAN_BUF + 4];
 	char *inbuf;
 	char *inptr;
 	char *inend;
@@ -1234,7 +1234,7 @@ content_type_is_type (ContentType *content_type, const char *type, const char *s
 }
 
 static ContentType *
-parser_content_type (GMimeParser *parser)
+parser_content_type (GMimeParser *parser, GMimeContentType *parent)
 {
 	struct _GMimeParserPrivate *priv = parser->priv;
 	ContentType *content_type;
@@ -1244,8 +1244,13 @@ parser_content_type (GMimeParser *parser)
 	
 	if (!(value = header_raw_find (priv->headers, "Content-Type", NULL)) ||
 	    !g_mime_parse_content_type (&value, &content_type->type, &content_type->subtype)) {
-		content_type->type = g_strdup ("text");
-		content_type->subtype = g_strdup ("plain");
+		if (parent != NULL && g_mime_content_type_is_type (parent, "multipart", "digest")) {
+			content_type->type = g_strdup ("message");
+			content_type->subtype = g_strdup ("rfc822");
+		} else {
+			content_type->type = g_strdup ("text");
+			content_type->subtype = g_strdup ("plain");
+		}
 	}
 	
 	content_type->exists = value != NULL;
@@ -1353,6 +1358,33 @@ enum {
                          ((scan_from && len >= 5 && !strncmp (start, "From ", 5)) ||  \
 			  (len >= 2 && (start[0] == '-' && start[1] == '-')))
 
+static gboolean
+is_boundary (const char *text, size_t len, const char *boundary, size_t boundary_len)
+{
+	const char *inptr = text + boundary_len;
+	const char *inend = text + len;
+	
+	if (boundary_len > len)
+		return FALSE;
+	
+	/* make sure that the text matches the boundary */
+	if (strncmp (text, boundary, boundary_len) != 0)
+		return FALSE;
+	
+	if (!strncmp (text, "From ", 5))
+		return TRUE;
+	
+	/* the boundary may be optionally followed by linear whitespace */
+	while (inptr < inend) {
+		if (!is_lwsp (*inptr))
+			return FALSE;
+		
+		inptr++;
+	}
+	
+	return TRUE;
+}
+
 static int
 check_boundary (struct _GMimeParserPrivate *priv, const char *start, size_t len)
 {
@@ -1368,19 +1400,14 @@ check_boundary (struct _GMimeParserPrivate *priv, const char *start, size_t len)
 		
 		s = priv->bounds;
 		while (s) {
-			/* we use >= here because From lines are > 5 chars */
 			if (offset >= s->content_end &&
-			    len >= s->boundarylenfinal &&
-			    !strncmp (s->boundary, start,
-				      s->boundarylenfinal)) {
+			    is_boundary (start, len, s->boundary, s->boundarylenfinal)) {
 				d(printf ("found %s\n", s->content_end != -1 && offset >= s->content_end ?
 					  "end of content" : "end boundary"));
 				return FOUND_END_BOUNDARY;
 			}
 			
-			if (len == s->boundarylen &&
-			    !strncmp (s->boundary, start,
-				      s->boundarylen)) {
+			if (is_boundary (start, len, s->boundary, s->boundarylen)) {
 				d(printf ("found boundary\n"));
 				return FOUND_BOUNDARY;
 			}
@@ -1398,10 +1425,16 @@ static gboolean
 found_immediate_boundary (struct _GMimeParserPrivate *priv, gboolean end)
 {
 	BoundaryStack *s = priv->bounds;
-	size_t len = end ? s->boundarylenfinal : s->boundarylen;
+	size_t boundary_len = end ? s->boundarylenfinal : s->boundarylen;
+	register char *inptr = priv->inptr;
+	char *inend = priv->inend;
 	
-	return !strncmp (priv->inptr, s->boundary, len)
-		&& (priv->inptr[len] == '\n' || priv->inptr[len] == '\r');
+	/* Note: see optimization comment [1] */
+	*inend = '\n';
+	while (*inptr != '\n')
+		inptr++;
+	
+	return is_boundary (priv->inptr, inptr - priv->inptr, s->boundary, boundary_len);
 }
 
 /* Optimization Notes:
@@ -1422,11 +1455,13 @@ static int
 parser_scan_content (GMimeParser *parser, GByteArray *content, guint *crlf)
 {
 	struct _GMimeParserPrivate *priv = parser->priv;
+	char *aligned, *start, *inend;
 	register char *inptr;
-	char *start, *inend;
+	register int *dword;
 	size_t nleft, len;
 	size_t atleast;
 	int found = 0;
+	int mask;
 	
 	d(printf ("scan-content\n"));
 	
@@ -1460,10 +1495,25 @@ parser_scan_content (GMimeParser *parser, GByteArray *content, guint *crlf)
 		priv->midline = FALSE;
 		
 		while (inptr < inend) {
+			aligned = (char *) (((long) (inptr + 3)) & ~3);
 			start = inptr;
+			
 			/* Note: see optimization comment [1] */
-			while (*inptr != '\n')
+			while (inptr < aligned && *inptr != '\n')
 				inptr++;
+			
+			if (inptr == aligned) {
+				dword = (int *) inptr;
+				
+				do {
+					mask = *dword++ ^ 0x0A0A0A0A;
+					mask = ((mask - 0x01010101) & (~mask & 0x80808080));
+				} while (mask == 0);
+				
+				inptr = (char *) (dword - 1);
+				while (*inptr != '\n')
+					inptr++;
+			}
 			
 			len = (size_t) (inptr - start);
 			
@@ -1619,7 +1669,7 @@ parser_scan_message_part (GMimeParser *parser, GMimeMessagePart *mpart, int *fou
 		header = header->next;
 	}
 	
-	content_type = parser_content_type (parser);
+	content_type = parser_content_type (parser, NULL);
 	if (content_type_is_type (content_type, "multipart", "*"))
 		object = parser_construct_multipart (parser, content_type, TRUE, found);
 	else
@@ -1651,7 +1701,7 @@ parser_construct_leaf_part (GMimeParser *parser, ContentType *content_type, gboo
 	if (!content_type->exists) {
 		GMimeContentType *mime_type;
 		
-		mime_type = g_mime_content_type_new ("text", "plain");
+		mime_type = g_mime_content_type_new (content_type->type, content_type->subtype);
 		_g_mime_object_set_content_type (object, mime_type);
 		g_object_unref (mime_type);
 	}
@@ -1776,7 +1826,7 @@ parser_scan_multipart_subparts (GMimeParser *parser, GMimeMultipart *multipart)
 			break;
 		}
 		
-		content_type = parser_content_type (parser);
+		content_type = parser_content_type (parser, ((GMimeObject *) multipart)->content_type);
 		if (content_type_is_type (content_type, "multipart", "*"))
 			subpart = parser_construct_multipart (parser, content_type, FALSE, &found);
 		else
@@ -1875,7 +1925,7 @@ parser_construct_part (GMimeParser *parser)
 			return NULL;
 	}
 	
-	content_type = parser_content_type (parser);
+	content_type = parser_content_type (parser, NULL);
 	if (content_type_is_type (content_type, "multipart", "*"))
 		object = parser_construct_multipart (parser, content_type, TRUE, &found);
 	else
@@ -1893,7 +1943,8 @@ parser_construct_part (GMimeParser *parser)
  *
  * Constructs a MIME part from @parser.
  *
- * Returns: a MIME part based on @parser or %NULL on fail.
+ * Returns: (transfer full): a MIME part based on @parser or %NULL on
+ * fail.
  **/
 GMimeObject *
 g_mime_parser_construct_part (GMimeParser *parser)
@@ -1949,7 +2000,7 @@ parser_construct_message (GMimeParser *parser)
 			priv->bounds->content_end = parser_offset (priv, NULL) + content_length;
 	}
 	
-	content_type = parser_content_type (parser);
+	content_type = parser_content_type (parser, NULL);
 	if (content_type_is_type (content_type, "multipart", "*"))
 		object = parser_construct_multipart (parser, content_type, TRUE, &found);
 	else
@@ -1977,7 +2028,7 @@ parser_construct_message (GMimeParser *parser)
  *
  * Constructs a MIME message from @parser.
  *
- * Returns: a MIME message or %NULL on fail.
+ * Returns: (transfer full): a MIME message or %NULL on fail.
  **/
 GMimeMessage *
 g_mime_parser_construct_message (GMimeParser *parser)

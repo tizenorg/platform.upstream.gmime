@@ -100,6 +100,7 @@
     <keyword type="macro" name="GMIME_INTERFACE_AGE" link="gmime-gmime.html#GMIME-INTERFACE-AGE:CAPS"/>
     <keyword type="macro" name="GMIME_CHECK_VERSION()" link="gmime-gmime.html#GMIME-CHECK-VERSION:CAPS"/>
     <keyword type="macro" name="GMIME_ENABLE_RFC2047_WORKAROUNDS" link="gmime-gmime.html#GMIME-ENABLE-RFC2047-WORKAROUNDS:CAPS"/>
+    <keyword type="macro" name="GMIME_ENABLE_USE_ONLY_USER_CHARSETS" link="gmime-gmime.html#GMIME-ENABLE-USE-ONLY-USER-CHARSETS:CAPS" since="2.6.16"/>
     <keyword type="function" name="g_mime_init ()" link="gmime-gmime.html#g-mime-init"/>
     <keyword type="function" name="g_mime_shutdown ()" link="gmime-gmime.html#g-mime-shutdown"/>
     <keyword type="variable" name="gmime_major_version" link="gmime-gmime.html#gmime-major-version"/>
@@ -108,7 +109,7 @@
     <keyword type="variable" name="gmime_binary_age" link="gmime-gmime.html#gmime-binary-age"/>
     <keyword type="variable" name="gmime_interface_age" link="gmime-gmime.html#gmime-interface-age"/>
     <keyword type="function" name="g_mime_check_version ()" link="gmime-gmime.html#g-mime-check-version"/>
-    <keyword type="struct" name="GMimeCharset" link="gmime-gmime-charset.html#GMimeCharset"/>
+    <keyword type="struct" name="struct GMimeCharset" link="gmime-gmime-charset.html#GMimeCharset"/>
     <keyword type="function" name="g_mime_charset_map_init ()" link="gmime-gmime-charset.html#g-mime-charset-map-init"/>
     <keyword type="function" name="g_mime_charset_map_shutdown ()" link="gmime-gmime-charset.html#g-mime-charset-map-shutdown"/>
     <keyword type="function" name="g_mime_locale_charset ()" link="gmime-gmime-charset.html#g-mime-locale-charset"/>
@@ -141,7 +142,7 @@
     <keyword type="function" name="g_mime_content_encoding_from_string ()" link="gmime-gmime-encodings.html#g-mime-content-encoding-from-string"/>
     <keyword type="function" name="g_mime_content_encoding_to_string ()" link="gmime-gmime-encodings.html#g-mime-content-encoding-to-string"/>
     <keyword type="enum" name="enum GMimeEncodingConstraint" link="gmime-gmime-encodings.html#GMimeEncodingConstraint"/>
-    <keyword type="struct" name="GMimeEncoding" link="gmime-gmime-encodings.html#GMimeEncoding"/>
+    <keyword type="struct" name="struct GMimeEncoding" link="gmime-gmime-encodings.html#GMimeEncoding"/>
     <keyword type="function" name="g_mime_encoding_init_encode ()" link="gmime-gmime-encodings.html#g-mime-encoding-init-encode"/>
     <keyword type="function" name="g_mime_encoding_init_decode ()" link="gmime-gmime-encodings.html#g-mime-encoding-init-decode"/>
     <keyword type="function" name="g_mime_encoding_reset ()" link="gmime-gmime-encodings.html#g-mime-encoding-reset"/>
@@ -209,11 +210,13 @@
     <keyword type="struct" name="struct GMimeStreamFile" link="GMimeStreamFile.html#GMimeStreamFile-struct"/>
     <keyword type="function" name="g_mime_stream_file_new ()" link="GMimeStreamFile.html#g-mime-stream-file-new"/>
     <keyword type="function" name="g_mime_stream_file_new_with_bounds ()" link="GMimeStreamFile.html#g-mime-stream-file-new-with-bounds"/>
+    <keyword type="function" name="g_mime_stream_file_new_for_path ()" link="GMimeStreamFile.html#g-mime-stream-file-new-for-path" since="2.6.18"/>
     <keyword type="function" name="g_mime_stream_file_get_owner ()" link="GMimeStreamFile.html#g-mime-stream-file-get-owner"/>
     <keyword type="function" name="g_mime_stream_file_set_owner ()" link="GMimeStreamFile.html#g-mime-stream-file-set-owner"/>
     <keyword type="struct" name="struct GMimeStreamFs" link="GMimeStreamFs.html#GMimeStreamFs-struct"/>
     <keyword type="function" name="g_mime_stream_fs_new ()" link="GMimeStreamFs.html#g-mime-stream-fs-new"/>
     <keyword type="function" name="g_mime_stream_fs_new_with_bounds ()" link="GMimeStreamFs.html#g-mime-stream-fs-new-with-bounds"/>
+    <keyword type="function" name="g_mime_stream_fs_new_for_path ()" link="GMimeStreamFs.html#g-mime-stream-fs-new-for-path" since="2.6.18"/>
     <keyword type="function" name="g_mime_stream_fs_get_owner ()" link="GMimeStreamFs.html#g-mime-stream-fs-get-owner"/>
     <keyword type="function" name="g_mime_stream_fs_set_owner ()" link="GMimeStreamFs.html#g-mime-stream-fs-set-owner"/>
     <keyword type="struct" name="struct GMimeStreamMem" link="GMimeStreamMem.html#GMimeStreamMem-struct"/>

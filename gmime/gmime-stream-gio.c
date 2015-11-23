@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*  GMime
- *  Copyright (C) 2000-2012 Jeffrey Stedfast
+ *  Copyright (C) 2000-2014 Jeffrey Stedfast
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public License
@@ -636,7 +636,7 @@ stream_substream (GMimeStream *stream, gint64 start, gint64 end)
  *
  * Creates a new #GMimeStreamGIO wrapper around a #GFile object.
  *
- * Returns: a stream using @file.
+ * Returns: (transfer full): a stream using @file.
  **/
 GMimeStream *
 g_mime_stream_gio_new (GFile *file)
@@ -664,7 +664,8 @@ g_mime_stream_gio_new (GFile *file)
  * Creates a new #GMimeStreamGIO stream around a #GFile with bounds
  * @start and @end.
  *
- * Returns: a stream using @file with bounds @start and @end.
+ * Returns: (transfer full): a stream using @file with bounds @start
+ * and @end.
  **/
 GMimeStream *
 g_mime_stream_gio_new_with_bounds (GFile *file, gint64 start, gint64 end)

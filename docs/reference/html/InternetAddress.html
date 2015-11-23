@@ -93,7 +93,9 @@ Gets the display name of the <a class="link" href="InternetAddress.html" title="
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the display name of <em class="parameter"><code>ia</code></em>.</td>
+<td>the name of the mailbox or group in a form suitable for
+display if available or <code class="literal">NULL</code> otherwise. If the name is available,
+the returned string will be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -105,6 +107,9 @@ Gets the display name of the <a class="link" href="InternetAddress.html" title="
                                                          <em class="parameter"><code>const <span class="type">char</span> *name</code></em>);</pre>
 <p>
 Set the display name of the <a class="link" href="InternetAddress.html" title="InternetAddress"><span class="type">InternetAddress</span></a>.
+</p>
+<p>
+Note: The <em class="parameter"><code>name</code></em> string should be in UTF-8.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">

@@ -37,7 +37,7 @@
 </tr></table></div>
 <div class="refsynopsisdiv">
 <a name="gmime-gmime-charset.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">                    <a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset">GMimeCharset</a>;
+<pre class="synopsis">struct              <a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset">GMimeCharset</a>;
 <span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-charset.html#g-mime-charset-map-init" title="g_mime_charset_map_init ()">g_mime_charset_map_init</a>             (<em class="parameter"><code><span class="type">void</span></code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-charset.html#g-mime-charset-map-shutdown" title="g_mime_charset_map_shutdown ()">g_mime_charset_map_shutdown</a>         (<em class="parameter"><code><span class="type">void</span></code></em>);
 const <span class="returnvalue">char</span> *        <a class="link" href="gmime-gmime-charset.html#g-mime-locale-charset" title="g_mime_locale_charset ()">g_mime_locale_charset</a>               (<em class="parameter"><code><span class="type">void</span></code></em>);
@@ -48,14 +48,14 @@ const <span class="returnvalue">char</span> *        <a class="link" href="gmime
 const <span class="returnvalue">char</span> *        <a class="link" href="gmime-gmime-charset.html#g-mime-charset-name" title="g_mime_charset_name ()">g_mime_charset_name</a>                 (<em class="parameter"><code>const <span class="type">char</span> *charset</code></em>);
 const <span class="returnvalue">char</span> *        <a class="link" href="gmime-gmime-charset.html#g-mime-charset-locale-name" title="g_mime_charset_locale_name ()">g_mime_charset_locale_name</a>          (<em class="parameter"><code><span class="type">void</span></code></em>);
 const <span class="returnvalue">char</span> *        <a class="link" href="gmime-gmime-charset.html#g-mime-charset-iso-to-windows" title="g_mime_charset_iso_to_windows ()">g_mime_charset_iso_to_windows</a>       (<em class="parameter"><code>const <span class="type">char</span> *isocharset</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-charset.html#g-mime-charset-init" title="g_mime_charset_init ()">g_mime_charset_init</a>                 (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-charset.html#g-mime-charset-step" title="g_mime_charset_step ()">g_mime_charset_step</a>                 (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>,
+<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-charset.html#g-mime-charset-init" title="g_mime_charset_init ()">g_mime_charset_init</a>                 (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-charset.html#g-mime-charset-step" title="g_mime_charset_step ()">g_mime_charset_step</a>                 (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *inbuf</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>);
-const <span class="returnvalue">char</span> *        <a class="link" href="gmime-gmime-charset.html#g-mime-charset-best-name" title="g_mime_charset_best_name ()">g_mime_charset_best_name</a>            (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>);
+const <span class="returnvalue">char</span> *        <a class="link" href="gmime-gmime-charset.html#g-mime-charset-best-name" title="g_mime_charset_best_name ()">g_mime_charset_best_name</a>            (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>);
 const <span class="returnvalue">char</span> *        <a class="link" href="gmime-gmime-charset.html#g-mime-charset-best" title="g_mime_charset_best ()">g_mime_charset_best</a>                 (<em class="parameter"><code>const <span class="type">char</span> *inbuf</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="gmime-gmime-charset.html#g-mime-charset-can-encode" title="g_mime_charset_can_encode ()">g_mime_charset_can_encode</a>           (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> *mask</code></em>,
+<span class="returnvalue">gboolean</span>            <a class="link" href="gmime-gmime-charset.html#g-mime-charset-can-encode" title="g_mime_charset_can_encode ()">g_mime_charset_can_encode</a>           (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> *mask</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *charset</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *text</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> len</code></em>);
@@ -72,11 +72,11 @@ Charset utility functions.
 <div class="refsect1">
 <a name="gmime-gmime-charset.details"></a><h2>Details</h2>
 <div class="refsect2">
-<a name="GMimeCharset"></a><h3>GMimeCharset</h3>
-<pre class="programlisting">typedef struct {
+<a name="GMimeCharset"></a><h3>struct GMimeCharset</h3>
+<pre class="programlisting">struct GMimeCharset {
 	unsigned int mask;
 	unsigned int level;
-} GMimeCharset;
+};
 </pre>
 <p>
 State used by <a class="link" href="gmime-gmime-charset.html#g-mime-charset-best" title="g_mime_charset_best ()"><code class="function">g_mime_charset_best()</code></a> and <a class="link" href="gmime-gmime-charset.html#g-mime-charset-best-name" title="g_mime_charset_best_name ()"><code class="function">g_mime_charset_best_name()</code></a>.
@@ -293,7 +293,7 @@ charset.
 <hr>
 <div class="refsect2">
 <a name="g-mime-charset-init"></a><h3>g_mime_charset_init ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_charset_init                 (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_charset_init                 (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>);</pre>
 <p>
 Initializes a charset mask structure.
 </p>
@@ -308,7 +308,7 @@ Initializes a charset mask structure.
 <hr>
 <div class="refsect2">
 <a name="g-mime-charset-step"></a><h3>g_mime_charset_step ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_charset_step                 (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>,
+<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_charset_step                 (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *inbuf</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>);</pre>
 <p>
@@ -338,7 +338,7 @@ limiting what charsets our <em class="parameter"><code>charset-&gt;mask</code></
 <hr>
 <div class="refsect2">
 <a name="g-mime-charset-best-name"></a><h3>g_mime_charset_best_name ()</h3>
-<pre class="programlisting">const <span class="returnvalue">char</span> *        g_mime_charset_best_name            (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>);</pre>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        g_mime_charset_best_name            (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> *charset</code></em>);</pre>
 <p>
 Gets the best charset name based on the charset mask <em class="parameter"><code>charset</code></em>.
 </p>
@@ -387,7 +387,7 @@ it is US-ASCII safe.</td>
 <hr>
 <div class="refsect2">
 <a name="g-mime-charset-can-encode"></a><h3>g_mime_charset_can_encode ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            g_mime_charset_can_encode           (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> *mask</code></em>,
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            g_mime_charset_can_encode           (<em class="parameter"><code><a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> *mask</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *charset</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *text</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> len</code></em>);</pre>
@@ -399,7 +399,7 @@ Check to see if the UTF-8 <em class="parameter"><code>text</code></em> will fit 
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>mask</code></em> :</span></p></td>
-<td>a <a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="GMimeCharset"><span class="type">GMimeCharset</span></a> mask</td>
+<td>a <a class="link" href="gmime-gmime-charset.html#GMimeCharset" title="struct GMimeCharset"><span class="type">GMimeCharset</span></a> mask</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>charset</code></em> :</span></p></td>
@@ -452,7 +452,9 @@ Get the list of user-preferred charsets set with
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an array of user-set charsets or <code class="literal">NULL</code> if none set.</td>
+<td>an array of
+user-set charsets or <code class="literal">NULL</code> if none set. <span class="annotation">[<a href="http://foldoc.org/array"><span class="acronym">array</span></a> zero-terminated=1][<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr></tbody>
 </table></div>
 </div>

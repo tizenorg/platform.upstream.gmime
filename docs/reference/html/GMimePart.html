@@ -423,6 +423,9 @@ given the <em class="parameter"><code>constraint</code></em>.
 Sets the "filename" parameter on the Content-Disposition and also sets the
 "name" parameter on the Content-Type.
 </p>
+<p>
+Note: The <em class="parameter"><code>filename</code></em> string should be in UTF-8.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -432,7 +435,7 @@ Sets the "filename" parameter on the Content-Disposition and also sets the
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>filename</code></em> :</span></p></td>
-<td>the filename of the Mime Part's content</td>
+<td>the file name</td>
 </tr>
 </tbody>
 </table></div>
@@ -442,8 +445,8 @@ Sets the "filename" parameter on the Content-Disposition and also sets the
 <a name="g-mime-part-get-filename"></a><h3>g_mime_part_get_filename ()</h3>
 <pre class="programlisting">const <span class="returnvalue">char</span> *        g_mime_part_get_filename            (<em class="parameter"><code><a class="link" href="GMimePart.html" title="GMimePart"><span class="type">GMimePart</span></a> *mime_part</code></em>);</pre>
 <p>
-Gets the filename of the specificed mime part, or <code class="literal">NULL</code> if the mime
-part does not have the filename or name parameter set.
+Gets the filename of the specificed mime part, or <code class="literal">NULL</code> if the
+<em class="parameter"><code>mime_part</code></em> does not have the filename or name parameter set.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -454,9 +457,9 @@ part does not have the filename or name parameter set.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the filename of the specified MIME Part. It first checks to
-see if the "filename" parameter was set on the Content-Disposition
-and if not then checks the "name" parameter in the Content-Type.</td>
+<td>the filename of the specified <em class="parameter"><code>mime_part</code></em> or <code class="literal">NULL</code> if
+neither of the parameters is set. If a file name is set, the
+returned string will be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -478,7 +481,9 @@ on error.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the data-wrapper for the mime part's contents.</td>
+<td>the data-wrapper for the mime part's
+contents. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>

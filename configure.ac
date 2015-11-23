@@ -12,8 +12,8 @@ AC_PREREQ(2.54)
 #
 m4_define([gmime_major_version], [2])
 m4_define([gmime_minor_version], [6])
-m4_define([gmime_micro_version], [15])
-m4_define([gmime_interface_age], [15])
+m4_define([gmime_micro_version], [20])
+m4_define([gmime_interface_age], [0])
 m4_define([gmime_binary_age],
           [m4_eval(100 * gmime_minor_version + gmime_micro_version)])
 m4_define([gmime_version],
@@ -50,8 +50,10 @@ AC_CANONICAL_HOST
 # Save this value here, since automake will set cflags later
 cflags_set=${CFLAGS+set}
 
-AM_INIT_AUTOMAKE([1.9 dist-bzip2 tar-ustar no-dist-gzip foreign])
+AM_INIT_AUTOMAKE([1.9 dist-bzip2 tar-ustar no-dist-gzip foreign -Wno-portability])
 AC_SUBST([ACLOCAL_AMFLAGS], ["-I m4 \${ACLOCAL_FLAGS}"])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])],
+         [AC_SUBST([AM_DEFAULT_VERBOSITY], [1])])
 dnl m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE
@@ -496,12 +498,14 @@ if test "x$enable_cryptography" != "xyes"; then
    enable_smime="no"
 fi
 
-if test "x$enable_smime" = "xyes"; then
+m4_ifdef([AM_PATH_GPGME_PTHREAD], [
+AS_IF([test "x$enable_smime" = "xyes"], [
    AM_PATH_GPGME_PTHREAD(1.1.6, enable_smime="yes (via GpgME)", enable_smime="no")
    if test "x$enable_smime" != "xno"; then
       AC_DEFINE(ENABLE_SMIME, 1, [Define if GMime should enable experimental S/MIME support.])
    fi
-fi
+])
+])
 
 dnl ****************************
 dnl *** Enable Mono bindings ***
@@ -586,6 +590,10 @@ AC_ARG_WITH([gacdir], AC_HELP_STRING([--with-gacdir], [Specify the Global Assemb
 gacdir=$with_gacdir
 AC_SUBST(gacdir)
 
+dnl Check for GObject introspection and Vala binding generator
+GOBJECT_INTROSPECTION_CHECK([1.30.0])
+VAPIGEN_CHECK
+
 dnl Extra libs
 EXTRA_LIBS="$ZLIB"
 if test "x$LIBSOCKET" != "x"; then
@@ -618,7 +626,6 @@ AC_SUBST(GMIME_INCLUDEDIR)
 AC_SUBST(GMIME_LIBS_PRIVATE)
 AC_SUBST(GMIME_CFLAGS)
 AC_SUBST(GMIME_LIBS)
-
 
 AC_OUTPUT(
 Makefile
@@ -660,4 +667,5 @@ Configuration:
   Strict parser:        ${enable_strict_parser}
 
   Mono bindings:        ${enable_mono}
+  Vala bindings:        ${enable_vala}
 "

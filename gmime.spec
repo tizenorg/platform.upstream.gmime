@@ -1,5 +1,5 @@
 # Note that this is NOT a relocatable package
-%define ver      2.6.15
+%define ver      2.6.20
 %define prefix   /usr
 %define enable_mono 0
 %define enable_gtk_doc 0

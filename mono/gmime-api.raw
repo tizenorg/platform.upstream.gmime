@@ -2058,6 +2058,12 @@
           <parameter type="FILE*" name="fp" />
         </parameters>
       </constructor>
+      <constructor cname="g_mime_stream_file_new_for_path">
+        <parameters>
+          <parameter type="const-char*" name="path" />
+          <parameter type="const-char*" name="mode" />
+        </parameters>
+      </constructor>
       <constructor cname="g_mime_stream_file_new_with_bounds">
         <parameters>
           <parameter type="FILE*" name="fp" />
@@ -2109,6 +2115,13 @@
       <constructor cname="g_mime_stream_fs_new">
         <parameters>
           <parameter type="int" name="fd" />
+        </parameters>
+      </constructor>
+      <constructor cname="g_mime_stream_fs_new_for_path">
+        <parameters>
+          <parameter type="const-char*" name="path" />
+          <parameter type="int" name="flags" />
+          <parameter type="int" name="mode" />
         </parameters>
       </constructor>
       <constructor cname="g_mime_stream_fs_new_with_bounds">
@@ -2544,7 +2557,9 @@
         </parameters>
       </method>
     </object>
-    <struct name="Charset" cname="GMimeCharset" opaque="true">
+    <struct name="Charset" cname="GMimeCharset">
+      <field name="Mask" cname="mask" type="unsigned int" />
+      <field name="Level" cname="level" type="unsigned int" />
       <method name="Best" cname="g_mime_charset_best" shared="true">
         <return-type type="const-char*" />
         <parameters>
@@ -2613,7 +2628,12 @@
         </parameters>
       </method>
     </struct>
-    <struct name="Encoding" cname="GMimeEncoding" opaque="true">
+    <struct name="Encoding" cname="GMimeEncoding">
+      <field name="Encoding" cname="encoding" type="GMimeContentEncoding" />
+      <field name="Uubuf" cname="uubuf" array_len="60" type="unsigned char" />
+      <field name="Encode" cname="encode" type="gboolean" />
+      <field name="Save" cname="save" type="guint32" />
+      <field name="State" cname="state" type="int" />
       <method name="Base64DecodeStep" cname="g_mime_encoding_base64_decode_step" shared="true">
         <return-type type="size_t" />
         <parameters>
@@ -3190,7 +3210,7 @@
       <method name="HeaderFold" cname="g_mime_utils_header_fold" shared="true">
         <return-type type="char*" />
         <parameters>
-          <parameter type="const-char*" name="str" />
+          <parameter type="const-char*" name="header" />
         </parameters>
       </method>
       <method name="HeaderFormatDate" cname="g_mime_utils_header_format_date" shared="true">
@@ -3203,8 +3223,8 @@
       <method name="HeaderPrintf" cname="g_mime_utils_header_printf" shared="true">
         <return-type type="char*" />
         <parameters>
-          <parameter type="const-char*" name="format" />
-          <parameter ellipsis="true" />
+          <parameter type="const-char*" name="format" printf_format="true" />
+          <parameter ellipsis="true" printf_format_args="true" />
         </parameters>
       </method>
       <method name="QuoteString" cname="g_mime_utils_quote_string" shared="true">
@@ -3216,7 +3236,7 @@
       <method name="StructuredHeaderFold" cname="g_mime_utils_structured_header_fold" shared="true">
         <return-type type="char*" />
         <parameters>
-          <parameter type="const-char*" name="str" />
+          <parameter type="const-char*" name="header" />
         </parameters>
       </method>
       <method name="TextIs8bit" cname="g_mime_utils_text_is_8bit" shared="true">
@@ -3235,7 +3255,7 @@
       <method name="UnstructuredHeaderFold" cname="g_mime_utils_unstructured_header_fold" shared="true">
         <return-type type="char*" />
         <parameters>
-          <parameter type="const-char*" name="str" />
+          <parameter type="const-char*" name="header" />
         </parameters>
       </method>
     </class>

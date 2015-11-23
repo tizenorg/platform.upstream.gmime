@@ -460,7 +460,7 @@ Gets the current header's name.
 <a name="g-mime-header-iter-get-value"></a><h3>g_mime_header_iter_get_value ()</h3>
 <pre class="programlisting">const <span class="returnvalue">char</span> *        g_mime_header_iter_get_value        (<em class="parameter"><code><a class="link" href="gmime-GMimeHeader.html#GMimeHeaderIter" title="struct GMimeHeaderIter"><span class="type">GMimeHeaderIter</span></a> *iter</code></em>);</pre>
 <p>
-Gets the current header's name.
+Gets the current header's value.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -472,7 +472,9 @@ Gets the current header's name.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the header name or <code class="literal">NULL</code> if invalid.</td>
+<td>the header's raw, unprocessed value or <code class="literal">NULL</code> if invalid.
+Note: The returned value should be decoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-decode-text" title="g_mime_utils_header_decode_text ()"><code class="function">g_mime_utils_header_decode_text()</code></a> before displaying to the user.</td>
 </tr>
 </tbody>
 </table></div>
@@ -501,7 +503,9 @@ Sets the current header's value to the new value.
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
 <code class="literal">TRUE</code> if the value was set or <code class="literal">FALSE</code> otherwise (indicates
-invalid iter).</td>
+invalid iter).
+Note: <em class="parameter"><code>value</code></em> should be encoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-text" title="g_mime_utils_header_encode_text ()"><code class="function">g_mime_utils_header_encode_text()</code></a>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -619,6 +623,10 @@ Prepends a header. If <em class="parameter"><code>value</code></em> is <code cla
 for it (useful for setting the order of headers before values can
 be obtained for them) otherwise the header will be unset.
 </p>
+<p>
+Note: <em class="parameter"><code>value</code></em> should be encoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-text" title="g_mime_utils_header_encode_text ()"><code class="function">g_mime_utils_header_encode_text()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -648,6 +656,10 @@ be obtained for them) otherwise the header will be unset.
 Appends a header. If <em class="parameter"><code>value</code></em> is <code class="literal">NULL</code>, a space will be set aside for it
 (useful for setting the order of headers before values can be
 obtained for them) otherwise the header will be unset.
+</p>
+<p>
+Note: <em class="parameter"><code>value</code></em> should be encoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-text" title="g_mime_utils_header_encode_text ()"><code class="function">g_mime_utils_header_encode_text()</code></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -714,6 +726,10 @@ Note: If there are multiple headers with the specified field name,
 the first instance of the header will be replaced and further
 instances will be removed.
 </p>
+<p>
+Additionally, <em class="parameter"><code>value</code></em> should be encoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-text" title="g_mime_utils_header_encode_text ()"><code class="function">g_mime_utils_header_encode_text()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -755,7 +771,9 @@ Gets the value of the first header with the name requested.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the value of the header requested.</td>
+<td>the value of the header requested.
+Note: The returned value should be decoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-decode-text" title="g_mime_utils_header_decode_text ()"><code class="function">g_mime_utils_header_decode_text()</code></a> before displaying to the user.</td>
 </tr>
 </tbody>
 </table></div>
@@ -778,7 +796,7 @@ Initializes an iterator for traversing <em class="parameter"><code>headers</code
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
-<td>a <a class="link" href="gmime-GMimeHeader.html#GMimeHeaderIter" title="struct GMimeHeaderIter"><span class="type">GMimeHeaderIter</span></a>
+<td>a <a class="link" href="gmime-GMimeHeader.html#GMimeHeaderIter" title="struct GMimeHeaderIter"><span class="type">GMimeHeaderIter</span></a>. <span class="annotation">[<a href="http://foldoc.org/out"><span class="acronym">out</span></a>]</span>
 </td>
 </tr>
 <tr>
@@ -808,7 +826,8 @@ Calls <em class="parameter"><code>func</code></em> for each header name/value pa
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
-<td>function to be called for each header.</td>
+<td>function to be called for each header. <span class="annotation">[<a href="http://foldoc.org/scope%20call"><span class="acronym">scope call</span></a>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -914,7 +933,8 @@ Gets the raw stream representing <em class="parameter"><code>headers</code></em>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="GMimeStream.html" title="GMimeStream"><span class="type">GMimeStream</span></a> if set or <code class="literal">NULL</code> otherwise.</td>
+<td>a <a class="link" href="GMimeStream.html" title="GMimeStream"><span class="type">GMimeStream</span></a> if set or <code class="literal">NULL</code> otherwise. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>

@@ -427,8 +427,9 @@ verify the integirity of the <em class="parameter"><code>istream</code></em>.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="GMimeSignature.html#GMimeSignatureList"><span class="type">GMimeSignatureList</span></a> object containing the status of each
-signature or <code class="literal">NULL</code> on error.</td>
+<td>a <a class="link" href="GMimeSignature.html#GMimeSignatureList"><span class="type">GMimeSignatureList</span></a> object containing
+the status of each signature or <code class="literal">NULL</code> on error. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -470,7 +471,9 @@ writes the resulting ciphertext to the output stream.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>recipients</code></em> :</span></p></td>
-<td>an array of recipient key ids and/or email addresses</td>
+<td>an array of recipient key ids
+and/or email addresses. <span class="annotation">[<a href="http://foldoc.org/element-type"><span class="acronym">element-type</span></a> utf8]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>istream</code></em> :</span></p></td>
@@ -514,6 +517,11 @@ On success, the returned <a class="link" href="GMimeCryptoContext.html#GMimeDecr
 certificates, one for each recipient, that the original encrypted stream
 was encrypted to.
 </p>
+<p>
+Note: It *may* be possible to maliciously design an encrypted stream such
+that recursively decrypting it will result in ane endless loop, causing
+a denial of service attack on your application.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -537,7 +545,9 @@ was encrypted to.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="GMimeCryptoContext.html#GMimeDecryptResult" title="struct GMimeDecryptResult"><span class="type">GMimeDecryptResult</span></a> on success or <code class="literal">NULL</code> on error.</td>
+<td>a <a class="link" href="GMimeCryptoContext.html#GMimeDecryptResult" title="struct GMimeDecryptResult"><span class="type">GMimeDecryptResult</span></a> on success or <code class="literal">NULL</code>
+on error. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -598,7 +608,8 @@ the key/certificate database controlled by <em class="parameter"><code>ctx</code
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>keys</code></em> :</span></p></td>
-<td>an array of key ids</td>
+<td>an array of key ids. <span class="annotation">[<a href="http://foldoc.org/element-type"><span class="acronym">element-type</span></a> utf8]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>ostream</code></em> :</span></p></td>
@@ -780,7 +791,8 @@ Gets the list of certificates that the stream had been encrypted to.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="GMimeCertificate.html#GMimeCertificateList"><span class="type">GMimeCertificateList</span></a>.</td>
+<td>a <a class="link" href="GMimeCertificate.html#GMimeCertificateList"><span class="type">GMimeCertificateList</span></a>. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -828,7 +840,9 @@ Gets a list of signatures if the encrypted stream had also been signed.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="GMimeSignature.html#GMimeSignatureList"><span class="type">GMimeSignatureList</span></a> or <code class="literal">NULL</code> if the stream was not signed.</td>
+<td>a <a class="link" href="GMimeSignature.html#GMimeSignatureList"><span class="type">GMimeSignatureList</span></a> or <code class="literal">NULL</code> if the
+stream was not signed. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>

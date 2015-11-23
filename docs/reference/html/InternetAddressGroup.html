@@ -81,7 +81,7 @@ An RFC 2822 Group address.
 <a name="internet-address-group-new"></a><h3>internet_address_group_new ()</h3>
 <pre class="programlisting"><a class="link" href="InternetAddress.html" title="InternetAddress"><span class="returnvalue">InternetAddress</span></a> *   internet_address_group_new          (<em class="parameter"><code>const <span class="type">char</span> *name</code></em>);</pre>
 <p>
-Creates a new <a class="link" href="InternetAddressGroup.html" title="InternetAddressGroup"><span class="type">InternetAddressGroup</span></a> object with a display name of
+Creates a new <a class="link" href="InternetAddressGroup.html" title="InternetAddressGroup"><span class="type">InternetAddressGroup</span></a> object with the specified
 <em class="parameter"><code>name</code></em>.
 </p>
 <div class="variablelist"><table border="0">
@@ -93,7 +93,8 @@ Creates a new <a class="link" href="InternetAddressGroup.html" title="InternetAd
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a class="link" href="InternetAddressGroup.html" title="InternetAddressGroup"><span class="type">InternetAddressGroup</span></a> object.</td>
+<td>a new <a class="link" href="InternetAddressGroup.html" title="InternetAddressGroup"><span class="type">InternetAddressGroup</span></a> object.
+Note: The <em class="parameter"><code>name</code></em> string should be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -117,7 +118,9 @@ rfc822 group address.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="InternetAddressList.html" title="InternetAddressList"><span class="type">InternetAddressList</span></a> containing the members of <em class="parameter"><code>group</code></em>.</td>
+<td>a <a class="link" href="InternetAddressList.html" title="InternetAddressList"><span class="type">InternetAddressList</span></a> containing the
+members of <em class="parameter"><code>group</code></em>. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>

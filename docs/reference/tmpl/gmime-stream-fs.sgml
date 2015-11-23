@@ -46,6 +46,17 @@ gmime-stream-fs
 @Returns: 
 
 
+<!-- ##### FUNCTION g_mime_stream_fs_new_for_path ##### -->
+<para>
+
+</para>
+
+@path: 
+@flags: 
+@mode: 
+@Returns: 
+
+
 <!-- ##### FUNCTION g_mime_stream_fs_get_owner ##### -->
 <para>
 

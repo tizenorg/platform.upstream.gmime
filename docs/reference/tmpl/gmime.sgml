@@ -72,6 +72,13 @@ gmime
 
 
 
+<!-- ##### MACRO GMIME_ENABLE_USE_ONLY_USER_CHARSETS ##### -->
+<para>
+
+</para>
+
+
+
 <!-- ##### FUNCTION g_mime_init ##### -->
 <para>
 

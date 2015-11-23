@@ -1,5 +1,5 @@
 # Note that this is NOT a relocatable package
-%define ver      2.6.15
+%define ver      2.6.20
 %define enable_mono 0
 %define enable_gtk_doc 0
 
@@ -24,7 +24,6 @@ Group: Development/Libraries
 URL: http://spruce.sourceforge.net/gmime/
 
 Source: gmime-%{version}.tar.bz2
-
 Requires: glib2 >= 2.12.0
 BuildRequires: glib2-devel >= 2.12.0
 BuildRequires:  pkgconfig(glib-2.0)
@@ -72,7 +71,7 @@ rm -rf %{buildroot}
 #%doc doc/html/* AUTHORS ChangeLog NEWS README COPYING TODO
 #%{_prefix}/bin/*
 #%{_prefix}/lib/*.sh
-%{_libdir}/libgmime*
+%{_libdir}/libgmime*.so.*
 %{_prefix}/share/license/gmime/*
 %exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
@@ -80,7 +79,7 @@ rm -rf %{buildroot}
 
 %files devel
 %{_includedir}/gmime-2.6/gmime/*.h
-%{_libdir}/libgmime*
+%{_libdir}/libgmime*.so
 %{_libdir}/pkgconfig/*.pc
 %exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la

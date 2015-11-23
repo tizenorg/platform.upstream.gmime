@@ -7,6 +7,7 @@ GMIME_BINARY_AGE
 GMIME_INTERFACE_AGE
 GMIME_CHECK_VERSION
 GMIME_ENABLE_RFC2047_WORKAROUNDS
+GMIME_ENABLE_USE_ONLY_USER_CHARSETS
 g_mime_init
 g_mime_shutdown
 gmime_major_version
@@ -103,6 +104,7 @@ GMIME_STREAM_CAT_GET_CLASS
 GMimeStreamFile
 g_mime_stream_file_new
 g_mime_stream_file_new_with_bounds
+g_mime_stream_file_new_for_path
 g_mime_stream_file_get_owner
 g_mime_stream_file_set_owner
 
@@ -124,6 +126,7 @@ GMIME_STREAM_FILE_GET_CLASS
 GMimeStreamFs
 g_mime_stream_fs_new
 g_mime_stream_fs_new_with_bounds
+g_mime_stream_fs_new_for_path
 g_mime_stream_fs_get_owner
 g_mime_stream_fs_set_owner
 

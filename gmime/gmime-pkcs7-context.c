@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*  GMime
- *  Copyright (C) 2000-2012 Jeffrey Stedfast
+ *  Copyright (C) 2000-2014 Jeffrey Stedfast
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public License
@@ -890,7 +890,7 @@ pkcs7_export_keys (GMimeCryptoContext *context, GPtrArray *keys, GMimeStream *os
  *
  * Creates a new pkcs7 crypto context object.
  *
- * Returns: a new pkcs7 crypto context object.
+ * Returns: (transfer full): a new pkcs7 crypto context object.
  **/
 GMimeCryptoContext *
 g_mime_pkcs7_context_new (GMimePasswordRequestFunc request_passwd)

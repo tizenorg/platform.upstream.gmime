@@ -332,7 +332,7 @@ Sets the Content-Type's parameter list.
 <pre class="programlisting">const <span class="returnvalue">char</span> *        g_mime_content_type_get_parameter   (<em class="parameter"><code><a class="link" href="GMimeContentType.html" title="GMimeContentType"><span class="type">GMimeContentType</span></a> *mime_type</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *attribute</code></em>);</pre>
 <p>
-Gets the parameter value specified by <em class="parameter"><code>attribute</code></em> if it's available.
+Gets the parameter value specified by <em class="parameter"><code>name</code></em> if it's available.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -342,13 +342,10 @@ Gets the parameter value specified by <em class="parameter"><code>attribute</cod
 <td>a <a class="link" href="GMimeContentType.html" title="GMimeContentType"><span class="type">GMimeContentType</span></a> object</td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
-<td>parameter name (aka attribute)</td>
-</tr>
-<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a const pointer to the paramer value specified by
-<em class="parameter"><code>attribute</code></em> or <code class="literal">NULL</code> on fail.</td>
+<td>the value of the requested parameter or <code class="literal">NULL</code> if the
+parameter is not set. If the parameter is set, the returned string
+will be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -362,16 +359,16 @@ Gets the parameter value specified by <em class="parameter"><code>attribute</cod
 <p>
 Sets a parameter on the Content-Type.
 </p>
+<p>
+Note: The <em class="parameter"><code>name</code></em> should be in US-ASCII while the <em class="parameter"><code>value</code></em> should be in
+UTF-8.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>mime_type</code></em> :</span></p></td>
 <td>MIME Content-Type</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
-<td>parameter name (aka attribute)</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>

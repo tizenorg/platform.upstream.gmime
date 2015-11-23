@@ -355,8 +355,9 @@ Gets the <a class="link" href="InternetAddress.html" title="InternetAddress"><sp
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="InternetAddress.html" title="InternetAddress"><span class="type">InternetAddress</span></a> at the specified index or <code class="literal">NULL</code> if
-the index is out of range.</td>
+<td>the <a class="link" href="InternetAddress.html" title="InternetAddress"><span class="type">InternetAddress</span></a> at the specified
+index or <code class="literal">NULL</code> if the index is out of range. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -484,8 +485,9 @@ Construct a list of internet addresses from the given string.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="InternetAddressList.html" title="InternetAddressList"><span class="type">InternetAddressList</span></a> or <code class="literal">NULL</code> if the input string does
-not contain any addresses.</td>
+<td>a <a class="link" href="InternetAddressList.html" title="InternetAddressList"><span class="type">InternetAddressList</span></a> or <code class="literal">NULL</code> if the
+input string does not contain any addresses. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -497,7 +499,7 @@ not contain any addresses.</td>
                                                          <em class="parameter"><code><span class="type">GString</span> *str</code></em>);</pre>
 <p>
 Writes the rfc2047-encoded rfc822 formatted addresses in <em class="parameter"><code>list</code></em> to
-<em class="parameter"><code>string</code></em>, folding appropriately.
+<em class="parameter"><code>str</code></em>, folding appropriately.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">

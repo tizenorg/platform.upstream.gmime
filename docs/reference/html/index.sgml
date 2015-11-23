@@ -27,6 +27,7 @@
 <ANCHOR id="GMIME-INTERFACE-AGE:CAPS" href="gmime/gmime-gmime.html#GMIME-INTERFACE-AGE:CAPS">
 <ANCHOR id="GMIME-CHECK-VERSION:CAPS" href="gmime/gmime-gmime.html#GMIME-CHECK-VERSION:CAPS">
 <ANCHOR id="GMIME-ENABLE-RFC2047-WORKAROUNDS:CAPS" href="gmime/gmime-gmime.html#GMIME-ENABLE-RFC2047-WORKAROUNDS:CAPS">
+<ANCHOR id="GMIME-ENABLE-USE-ONLY-USER-CHARSETS:CAPS" href="gmime/gmime-gmime.html#GMIME-ENABLE-USE-ONLY-USER-CHARSETS:CAPS">
 <ANCHOR id="g-mime-init" href="gmime/gmime-gmime.html#g-mime-init">
 <ANCHOR id="g-mime-shutdown" href="gmime/gmime-gmime.html#g-mime-shutdown">
 <ANCHOR id="gmime-major-version" href="gmime/gmime-gmime.html#gmime-major-version">
@@ -179,6 +180,7 @@
 <ANCHOR id="GMimeStreamFile-struct" href="gmime/GMimeStreamFile.html#GMimeStreamFile-struct">
 <ANCHOR id="g-mime-stream-file-new" href="gmime/GMimeStreamFile.html#g-mime-stream-file-new">
 <ANCHOR id="g-mime-stream-file-new-with-bounds" href="gmime/GMimeStreamFile.html#g-mime-stream-file-new-with-bounds">
+<ANCHOR id="g-mime-stream-file-new-for-path" href="gmime/GMimeStreamFile.html#g-mime-stream-file-new-for-path">
 <ANCHOR id="g-mime-stream-file-get-owner" href="gmime/GMimeStreamFile.html#g-mime-stream-file-get-owner">
 <ANCHOR id="g-mime-stream-file-set-owner" href="gmime/GMimeStreamFile.html#g-mime-stream-file-set-owner">
 <ANCHOR id="GMimeStreamFile.see-also" href="gmime/GMimeStreamFile.html#GMimeStreamFile.see-also">
@@ -190,6 +192,7 @@
 <ANCHOR id="GMimeStreamFs-struct" href="gmime/GMimeStreamFs.html#GMimeStreamFs-struct">
 <ANCHOR id="g-mime-stream-fs-new" href="gmime/GMimeStreamFs.html#g-mime-stream-fs-new">
 <ANCHOR id="g-mime-stream-fs-new-with-bounds" href="gmime/GMimeStreamFs.html#g-mime-stream-fs-new-with-bounds">
+<ANCHOR id="g-mime-stream-fs-new-for-path" href="gmime/GMimeStreamFs.html#g-mime-stream-fs-new-for-path">
 <ANCHOR id="g-mime-stream-fs-get-owner" href="gmime/GMimeStreamFs.html#g-mime-stream-fs-get-owner">
 <ANCHOR id="g-mime-stream-fs-set-owner" href="gmime/GMimeStreamFs.html#g-mime-stream-fs-set-owner">
 <ANCHOR id="GMimeStreamFs.see-also" href="gmime/GMimeStreamFs.html#GMimeStreamFs.see-also">

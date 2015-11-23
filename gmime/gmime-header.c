@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*  GMime
- *  Copyright (C) 2000-2012 Jeffrey Stedfast
+ *  Copyright (C) 2000-2014 Jeffrey Stedfast
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public License
@@ -415,6 +415,9 @@ g_mime_header_iter_get_name (GMimeHeaderIter *iter)
  *
  * Returns: %TRUE if the value was set or %FALSE otherwise (indicates
  * invalid iter).
+ *
+ * Note: @value should be encoded with a function such as
+ * g_mime_utils_header_encode_text().
  **/
 gboolean
 g_mime_header_iter_set_value (GMimeHeaderIter *iter, const char *value)
@@ -437,9 +440,12 @@ g_mime_header_iter_set_value (GMimeHeaderIter *iter, const char *value)
  * g_mime_header_iter_get_value:
  * @iter: a #GMimeHeaderIter
  *
- * Gets the current header's name.
+ * Gets the current header's value.
  *
- * Returns: the header name or %NULL if invalid.
+ * Returns: the header's raw, unprocessed value or %NULL if invalid.
+ *
+ * Note: The returned value should be decoded with a function such as
+ * g_mime_utils_header_decode_text() before displaying to the user.
  **/
 const char *
 g_mime_header_iter_get_value (GMimeHeaderIter *iter)
@@ -633,6 +639,9 @@ g_mime_header_list_contains (const GMimeHeaderList *headers, const char *name)
  * Prepends a header. If @value is %NULL, a space will be set aside
  * for it (useful for setting the order of headers before values can
  * be obtained for them) otherwise the header will be unset.
+ *
+ * Note: @value should be encoded with a function such as
+ * g_mime_utils_header_encode_text().
  **/
 void
 g_mime_header_list_prepend (GMimeHeaderList *headers, const char *name, const char *value)
@@ -659,6 +668,9 @@ g_mime_header_list_prepend (GMimeHeaderList *headers, const char *name, const ch
  * Appends a header. If @value is %NULL, a space will be set aside for it
  * (useful for setting the order of headers before values can be
  * obtained for them) otherwise the header will be unset.
+ *
+ * Note: @value should be encoded with a function such as
+ * g_mime_utils_header_encode_text().
  **/
 void
 g_mime_header_list_append (GMimeHeaderList *headers, const char *name, const char *value)
@@ -686,6 +698,9 @@ g_mime_header_list_append (GMimeHeaderList *headers, const char *name, const cha
  * Gets the value of the first header with the name requested.
  *
  * Returns: the value of the header requested.
+ *
+ * Note: The returned value should be decoded with a function such as
+ * g_mime_utils_header_decode_text() before displaying to the user.
  **/
 const char *
 g_mime_header_list_get (const GMimeHeaderList *headers, const char *name)
@@ -716,6 +731,9 @@ g_mime_header_list_get (const GMimeHeaderList *headers, const char *name)
  * Note: If there are multiple headers with the specified field name,
  * the first instance of the header will be replaced and further
  * instances will be removed.
+ *
+ * Additionally, @value should be encoded with a function such as
+ * g_mime_utils_header_encode_text().
  **/
 void
 g_mime_header_list_set (GMimeHeaderList *headers, const char *name, const char *value)
@@ -801,7 +819,7 @@ g_mime_header_list_remove (GMimeHeaderList *headers, const char *name)
 /**
  * g_mime_header_list_get_iter:
  * @headers: a #GMimeHeaderList
- * @iter: a #GMimeHeaderIter
+ * @iter: (out): a #GMimeHeaderIter
  *
  * Initializes an iterator for traversing @headers.
  *
@@ -830,7 +848,7 @@ g_mime_header_list_get_iter (GMimeHeaderList *headers, GMimeHeaderIter *iter)
 /**
  * g_mime_header_list_foreach:
  * @headers: A #GMimeHeaderList
- * @func: function to be called for each header.
+ * @func: (scope call): function to be called for each header.
  * @user_data: User data to be passed to the func.
  *
  * Calls @func for each header name/value pair.
@@ -1015,7 +1033,7 @@ g_mime_header_list_set_stream (GMimeHeaderList *headers, GMimeStream *stream)
  *
  * Gets the raw stream representing @headers.
  *
- * Returns: a #GMimeStream if set or %NULL otherwise.
+ * Returns: (transfer none): a #GMimeStream if set or %NULL otherwise.
  **/
 GMimeStream *
 g_mime_header_list_get_stream (GMimeHeaderList *headers)

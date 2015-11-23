@@ -46,6 +46,7 @@
                                                          minor,
                                                          micro)
 #define             <a class="link" href="gmime-gmime.html#GMIME-ENABLE-RFC2047-WORKAROUNDS:CAPS" title="GMIME_ENABLE_RFC2047_WORKAROUNDS">GMIME_ENABLE_RFC2047_WORKAROUNDS</a>
+#define             <a class="link" href="gmime-gmime.html#GMIME-ENABLE-USE-ONLY-USER-CHARSETS:CAPS" title="GMIME_ENABLE_USE_ONLY_USER_CHARSETS">GMIME_ENABLE_USE_ONLY_USER_CHARSETS</a>
 <span class="returnvalue">void</span>                <a class="link" href="gmime-gmime.html#g-mime-init" title="g_mime_init ()">g_mime_init</a>                         (<em class="parameter"><code><span class="type">guint32</span> flags</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="gmime-gmime.html#g-mime-shutdown" title="g_mime_shutdown ()">g_mime_shutdown</a>                     (<em class="parameter"><code><span class="type">void</span></code></em>);
 extern const guint  <a class="link" href="gmime-gmime.html#gmime-major-version" title="gmime_major_version">gmime_major_version</a>;
@@ -77,7 +78,7 @@ GMime's major version.
 <hr>
 <div class="refsect2">
 <a name="GMIME-MICRO-VERSION:CAPS"></a><h3>GMIME_MICRO_VERSION</h3>
-<pre class="programlisting">#define GMIME_MICRO_VERSION (15)
+<pre class="programlisting">#define GMIME_MICRO_VERSION (20)
 </pre>
 <p>
 GMime's micro version.
@@ -95,7 +96,7 @@ GMime's minor version.
 <hr>
 <div class="refsect2">
 <a name="GMIME-BINARY-AGE:CAPS"></a><h3>GMIME_BINARY_AGE</h3>
-<pre class="programlisting">#define GMIME_BINARY_AGE    (615)
+<pre class="programlisting">#define GMIME_BINARY_AGE    (620)
 </pre>
 <p>
 GMime's binary age.
@@ -104,7 +105,7 @@ GMime's binary age.
 <hr>
 <div class="refsect2">
 <a name="GMIME-INTERFACE-AGE:CAPS"></a><h3>GMIME_INTERFACE_AGE</h3>
-<pre class="programlisting">#define GMIME_INTERFACE_AGE (15)
+<pre class="programlisting">#define GMIME_INTERFACE_AGE (0)
 </pre>
 <p>
 GMime's interface age.
@@ -139,12 +140,24 @@ Check whether a GMime version equal to or greater than
 <hr>
 <div class="refsect2">
 <a name="GMIME-ENABLE-RFC2047-WORKAROUNDS:CAPS"></a><h3>GMIME_ENABLE_RFC2047_WORKAROUNDS</h3>
-<pre class="programlisting">#define GMIME_ENABLE_RFC2047_WORKAROUNDS  (1 &lt;&lt; 0)
+<pre class="programlisting">#define GMIME_ENABLE_RFC2047_WORKAROUNDS     (1 &lt;&lt; 0)
 </pre>
 <p>
 Initialization flag to enable workarounds for badly formed rfc2047
 encoded-words.
 </p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GMIME-ENABLE-USE-ONLY-USER-CHARSETS:CAPS"></a><h3>GMIME_ENABLE_USE_ONLY_USER_CHARSETS</h3>
+<pre class="programlisting">#define GMIME_ENABLE_USE_ONLY_USER_CHARSETS  (1 &lt;&lt; 1)
+</pre>
+<p>
+Initialization flag that hints to the rfc2047 encoder to use only
+the configured user-charsets (set via <a class="link" href="gmime-gmime-charset.html#g-mime-set-user-charsets" title="g_mime_set_user_charsets ()"><code class="function">g_mime_set_user_charsets()</code></a>)
+instead of trying to first use iso-8859-1.
+</p>
+<p class="since">Since 2.6.16</p>
 </div>
 <hr>
 <div class="refsect2">

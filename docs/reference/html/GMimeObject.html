@@ -294,7 +294,9 @@ Gets the <a class="link" href="GMimeContentType.html" title="GMimeContentType"><
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the content-type object for the specified MIME object.</td>
+<td>the content-type object for the specified
+MIME object. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -308,6 +310,10 @@ Gets the <a class="link" href="GMimeContentType.html" title="GMimeContentType"><
                                                          <em class="parameter"><code>const <span class="type">char</span> *value</code></em>);</pre>
 <p>
 Sets the content-type param <em class="parameter"><code>name</code></em> to the value <em class="parameter"><code>value</code></em>.
+</p>
+<p>
+Note: The <em class="parameter"><code>name</code></em> string should be in US-ASCII while the <em class="parameter"><code>value</code></em>
+string should be in UTF-8.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -352,8 +358,9 @@ Gets the value of the content-type param <em class="parameter"><code>name</code>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the value of the requested content-type param or <code class="literal">NULL</code> on
-if the param doesn't exist.</td>
+<td>the value of the requested content-type param or <code class="literal">NULL</code> if
+the param doesn't exist. If the param is set, the returned string
+will be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -450,7 +457,9 @@ Gets the <a class="link" href="GMimeContentDisposition.html" title="GMimeContent
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="GMimeContentDisposition.html" title="GMimeContentDisposition"><span class="type">GMimeContentDisposition</span></a> set on the MIME object.</td>
+<td>the <a class="link" href="GMimeContentDisposition.html" title="GMimeContentDisposition"><span class="type">GMimeContentDisposition</span></a> set on the
+MIME object. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -465,6 +474,10 @@ Gets the <a class="link" href="GMimeContentDisposition.html" title="GMimeContent
 <p>
 Add a content-disposition parameter to the specified mime part.
 </p>
+<p>
+Note: The <em class="parameter"><code>name</code></em> string should be in US-ASCII while the <em class="parameter"><code>value</code></em>
+string should be in UTF-8.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -472,10 +485,6 @@ Add a content-disposition parameter to the specified mime part.
 <td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
 <td>a <a class="link" href="GMimeObject.html" title="GMimeObject"><span class="type">GMimeObject</span></a>
 </td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
-<td>parameter name</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
@@ -492,7 +501,7 @@ Add a content-disposition parameter to the specified mime part.
                                                          <em class="parameter"><code>const <span class="type">char</span> *attribute</code></em>);</pre>
 <p>
 Gets the value of the Content-Disposition parameter specified by
-<em class="parameter"><code>attribute</code></em>, or <code class="literal">NULL</code> if the parameter does not exist.
+<em class="parameter"><code>name</code></em>, or <code class="literal">NULL</code> if the parameter does not exist.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -503,13 +512,10 @@ Gets the value of the Content-Disposition parameter specified by
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
-<td>parameter name</td>
-</tr>
-<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the value of a previously defined content-disposition
-parameter specified by <em class="parameter"><code>attribute</code></em>.</td>
+<td>the value of the requested content-disposition param or
+<code class="literal">NULL</code> if the param doesn't exist. If the param is set, the returned
+string will be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -568,6 +574,10 @@ Gets the Content-Id of the MIME object or NULL if one is not set.
 <p>
 Prepends a raw, unprocessed header to the MIME object.
 </p>
+<p>
+Note: <em class="parameter"><code>value</code></em> should be encoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-text" title="g_mime_utils_header_encode_text ()"><code class="function">g_mime_utils_header_encode_text()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -595,6 +605,10 @@ Prepends a raw, unprocessed header to the MIME object.
                                                          <em class="parameter"><code>const <span class="type">char</span> *value</code></em>);</pre>
 <p>
 Appends a raw, unprocessed header to the MIME object.
+</p>
+<p>
+Note: <em class="parameter"><code>value</code></em> should be encoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-text" title="g_mime_utils_header_encode_text ()"><code class="function">g_mime_utils_header_encode_text()</code></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -653,6 +667,10 @@ be found.</td>
 <p>
 Sets an arbitrary raw, unprocessed header on the MIME object.
 </p>
+<p>
+Note: <em class="parameter"><code>value</code></em> should be encoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-text" title="g_mime_utils_header_encode_text ()"><code class="function">g_mime_utils_header_encode_text()</code></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -695,7 +713,9 @@ Gets the raw, unprocessed value of the requested header.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>the raw, unprocessed value of the requested header if it
-exists or <code class="literal">NULL</code> otherwise.</td>
+exists or <code class="literal">NULL</code> otherwise.
+Note: The returned value should be decoded with a function such as
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-decode-text" title="g_mime_utils_header_decode_text ()"><code class="function">g_mime_utils_header_decode_text()</code></a> before displaying to the user.</td>
 </tr>
 </tbody>
 </table></div>
@@ -718,7 +738,8 @@ headers.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an allocated string containing all of the raw MIME headers.</td>
+<td>an allocated string containing all of the raw MIME headers.
+Note: The returned string will not be suitable for display.</td>
 </tr>
 </tbody>
 </table></div>
@@ -740,8 +761,9 @@ Get the header list for <em class="parameter"><code>object</code></em>.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="gmime-GMimeHeader.html#GMimeHeaderList" title="GMimeHeaderList"><span class="type">GMimeHeaderList</span></a> for <em class="parameter"><code>object</code></em>. Do not free this pointer
-when you are done with it.</td>
+<td>the <a class="link" href="gmime-GMimeHeader.html#GMimeHeaderList" title="GMimeHeaderList"><span class="type">GMimeHeaderList</span></a> for <em class="parameter"><code>object</code></em>. Do not
+free this pointer when you are done with it. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>

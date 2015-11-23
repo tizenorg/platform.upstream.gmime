@@ -42,19 +42,19 @@
                                                         (<em class="parameter"><code>const <span class="type">char</span> *str</code></em>);
 const <span class="returnvalue">char</span> *        <a class="link" href="gmime-gmime-encodings.html#g-mime-content-encoding-to-string" title="g_mime_content_encoding_to_string ()">g_mime_content_encoding_to_string</a>   (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeContentEncoding" title="enum GMimeContentEncoding"><span class="type">GMimeContentEncoding</span></a> encoding</code></em>);
 enum                <a class="link" href="gmime-gmime-encodings.html#GMimeEncodingConstraint" title="enum GMimeEncodingConstraint">GMimeEncodingConstraint</a>;
-                    <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding">GMimeEncoding</a>;
-<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-init-encode" title="g_mime_encoding_init_encode ()">g_mime_encoding_init_encode</a>         (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+struct              <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding">GMimeEncoding</a>;
+<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-init-encode" title="g_mime_encoding_init_encode ()">g_mime_encoding_init_encode</a>         (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeContentEncoding" title="enum GMimeContentEncoding"><span class="type">GMimeContentEncoding</span></a> encoding</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-init-decode" title="g_mime_encoding_init_decode ()">g_mime_encoding_init_decode</a>         (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-init-decode" title="g_mime_encoding_init_decode ()">g_mime_encoding_init_decode</a>         (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeContentEncoding" title="enum GMimeContentEncoding"><span class="type">GMimeContentEncoding</span></a> encoding</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-reset" title="g_mime_encoding_reset ()">g_mime_encoding_reset</a>               (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>);
-<span class="returnvalue">size_t</span>              <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-outlen" title="g_mime_encoding_outlen ()">g_mime_encoding_outlen</a>              (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-reset" title="g_mime_encoding_reset ()">g_mime_encoding_reset</a>               (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>);
+<span class="returnvalue">size_t</span>              <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-outlen" title="g_mime_encoding_outlen ()">g_mime_encoding_outlen</a>              (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>);
-<span class="returnvalue">size_t</span>              <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-step" title="g_mime_encoding_step ()">g_mime_encoding_step</a>                (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<span class="returnvalue">size_t</span>              <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-step" title="g_mime_encoding_step ()">g_mime_encoding_step</a>                (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *inbuf</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>,
                                                          <em class="parameter"><code><span class="type">char</span> *outbuf</code></em>);
-<span class="returnvalue">size_t</span>              <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-flush" title="g_mime_encoding_flush ()">g_mime_encoding_flush</a>               (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<span class="returnvalue">size_t</span>              <a class="link" href="gmime-gmime-encodings.html#g-mime-encoding-flush" title="g_mime_encoding_flush ()">g_mime_encoding_flush</a>               (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *inbuf</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>,
                                                          <em class="parameter"><code><span class="type">char</span> *outbuf</code></em>);
@@ -267,14 +267,14 @@ constraints are for the stream.
 </div>
 <hr>
 <div class="refsect2">
-<a name="GMimeEncoding"></a><h3>GMimeEncoding</h3>
-<pre class="programlisting">typedef struct {
+<a name="GMimeEncoding"></a><h3>struct GMimeEncoding</h3>
+<pre class="programlisting">struct GMimeEncoding {
 	GMimeContentEncoding encoding;
 	unsigned char uubuf[60];
 	gboolean encode;
 	guint32 save;
 	int state;
-} GMimeEncoding;
+};
 </pre>
 <p>
 A context used for encoding or decoding data.
@@ -309,10 +309,10 @@ A context used for encoding or decoding data.
 <hr>
 <div class="refsect2">
 <a name="g-mime-encoding-init-encode"></a><h3>g_mime_encoding_init_encode ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_encoding_init_encode         (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_encoding_init_encode         (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeContentEncoding" title="enum GMimeContentEncoding"><span class="type">GMimeContentEncoding</span></a> encoding</code></em>);</pre>
 <p>
-Initializes a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> state machine for encoding to
+Initializes a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> state machine for encoding to
 <em class="parameter"><code>encoding</code></em>.
 </p>
 <div class="variablelist"><table border="0">
@@ -320,7 +320,7 @@ Initializes a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" ti
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>state</code></em> :</span></p></td>
-<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> to initialize</td>
+<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> to initialize</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>encoding</code></em> :</span></p></td>
@@ -332,10 +332,10 @@ Initializes a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" ti
 <hr>
 <div class="refsect2">
 <a name="g-mime-encoding-init-decode"></a><h3>g_mime_encoding_init_decode ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_encoding_init_decode         (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_encoding_init_decode         (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeContentEncoding" title="enum GMimeContentEncoding"><span class="type">GMimeContentEncoding</span></a> encoding</code></em>);</pre>
 <p>
-Initializes a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> state machine for decoding from
+Initializes a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> state machine for decoding from
 <em class="parameter"><code>encoding</code></em>.
 </p>
 <div class="variablelist"><table border="0">
@@ -343,7 +343,7 @@ Initializes a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" ti
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>state</code></em> :</span></p></td>
-<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> to initialize</td>
+<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> to initialize</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>encoding</code></em> :</span></p></td>
@@ -355,22 +355,22 @@ Initializes a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" ti
 <hr>
 <div class="refsect2">
 <a name="g-mime-encoding-reset"></a><h3>g_mime_encoding_reset ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_encoding_reset               (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                g_mime_encoding_reset               (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>);</pre>
 <p>
-Resets the state of the <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a>.
+Resets the state of the <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>state</code></em> :</span></p></td>
-<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> to reset</td>
+<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> to reset</td>
 </tr></tbody>
 </table></div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="g-mime-encoding-outlen"></a><h3>g_mime_encoding_outlen ()</h3>
-<pre class="programlisting"><span class="returnvalue">size_t</span>              g_mime_encoding_outlen              (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<pre class="programlisting"><span class="returnvalue">size_t</span>              g_mime_encoding_outlen              (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>);</pre>
 <p>
 Given the input length, <em class="parameter"><code>inlen</code></em>, calculate the needed output length
@@ -381,7 +381,7 @@ to perform an encoding or decoding step.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>state</code></em> :</span></p></td>
-<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a>
+<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a>
 </td>
 </tr>
 <tr>
@@ -399,7 +399,7 @@ buffer of <em class="parameter"><code>inlen</code></em> bytes.</td>
 <hr>
 <div class="refsect2">
 <a name="g-mime-encoding-step"></a><h3>g_mime_encoding_step ()</h3>
-<pre class="programlisting"><span class="returnvalue">size_t</span>              g_mime_encoding_step                (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<pre class="programlisting"><span class="returnvalue">size_t</span>              g_mime_encoding_step                (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *inbuf</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>,
                                                          <em class="parameter"><code><span class="type">char</span> *outbuf</code></em>);</pre>
@@ -417,7 +417,7 @@ to be.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>state</code></em> :</span></p></td>
-<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a>
+<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a>
 </td>
 </tr>
 <tr>
@@ -442,7 +442,7 @@ to be.
 <hr>
 <div class="refsect2">
 <a name="g-mime-encoding-flush"></a><h3>g_mime_encoding_flush ()</h3>
-<pre class="programlisting"><span class="returnvalue">size_t</span>              g_mime_encoding_flush               (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
+<pre class="programlisting"><span class="returnvalue">size_t</span>              g_mime_encoding_flush               (<em class="parameter"><code><a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a> *state</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *inbuf</code></em>,
                                                          <em class="parameter"><code><span class="type">size_t</span> inlen</code></em>,
                                                          <em class="parameter"><code><span class="type">char</span> *outbuf</code></em>);</pre>
@@ -455,7 +455,7 @@ Completes the incremental encode or decode of the input stream (see
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>state</code></em> :</span></p></td>
-<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="GMimeEncoding"><span class="type">GMimeEncoding</span></a>
+<td>a <a class="link" href="gmime-gmime-encodings.html#GMimeEncoding" title="struct GMimeEncoding"><span class="type">GMimeEncoding</span></a>
 </td>
 </tr>
 <tr>

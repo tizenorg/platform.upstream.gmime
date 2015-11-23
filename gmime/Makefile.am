@@ -6,7 +6,9 @@ gmimeincludedir = $(includedir)/gmime-$(GMIME_API_VERSION)/gmime
 
 INCLUDES = 				\
 	-I$(top_srcdir) 		\
+	-I$(top_builddir) 		\
 	-I$(top_srcdir)/util		\
+	-I$(top_builddir)/util		\
 	-DG_LOG_DOMAIN=\"gmime\"	\
 	$(GMIME_CFLAGS)			\
 	$(GLIB_CFLAGS)
@@ -168,3 +170,55 @@ charset_map_SOURCES = charset-map.c
 charset_map_LDFLAGS = 
 charset_map_DEPENDENCIES = 
 charset_map_LDADD = $(top_builddir)/util/libgmime-util.la $(GLIB_LIBS)
+
+CLEANFILES =
+
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS =
+INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir)
+INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
+
+if HAVE_INTROSPECTION
+GMime-2.6.gir: libgmime-2.6.la
+GMime_2_6_gir_INCLUDES = GObject-2.0 Gio-2.0
+GMime_2_6_gir_CFLAGS = $(INCLUDES)
+GMime_2_6_gir_LIBS = libgmime-2.6.la
+GMime_2_6_gir_FILES = $(gmimeinclude_HEADERS) $(libgmime_2_6_la_SOURCES)
+GMime_2_6_gir_EXPORT_PACKAGES = gmime-2.6
+GMime_2_6_gir_SCANNERFLAGS = \
+	--c-include="gmime/gmime.h" \
+	--accept-unprefixed \
+	--symbol-prefix "gmime_" \
+	--symbol-prefix "g_mime_"
+INTROSPECTION_GIRS += GMime-2.6.gir
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+CLEANFILES += $(gir_DATA) $(typelib_DATA)
+endif
+
+if ENABLE_VAPIGEN
+-include $(VAPIGEN_MAKEFILE)
+
+gmime-2.6.vapi: GMime-2.6.gir GMime-2.6.metadata
+
+VAPIGEN_VAPIS = gmime-2.6.vapi
+gmime_2_6_vapi_DEPS = gio-2.0
+gmime_2_6_vapi_METADATADIRS = $(srcdir)
+gmime_2_6_vapi_FILES = GMime-2.6.gir
+
+gmime-2.6.deps:
+	$(AM_V_GEN) for pkg in $(gmime_2_6_vapi_DEPS); do \
+		echo $$pkg >> $@; \
+	done
+
+vapidir = $(datadir)/vala/vapi
+vapi_DATA = $(VAPIGEN_VAPIS) $(VAPIGEN_VAPIS:.vapi=.deps)
+
+EXTRA_DIST += GMime-2.6.metadata
+CLEANFILES += $(vapi_DATA)
+endif

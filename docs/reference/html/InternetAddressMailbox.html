@@ -81,7 +81,7 @@ An RFC 2822 Mailbox address.
 <pre class="programlisting"><a class="link" href="InternetAddress.html" title="InternetAddress"><span class="returnvalue">InternetAddress</span></a> *   internet_address_mailbox_new        (<em class="parameter"><code>const <span class="type">char</span> *name</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *addr</code></em>);</pre>
 <p>
-Creates a new <a class="link" href="InternetAddress.html" title="InternetAddress"><span class="type">InternetAddress</span></a> object with name <em class="parameter"><code>name</code></em> and address
+Creates a new <a class="link" href="InternetAddress.html" title="InternetAddress"><span class="type">InternetAddress</span></a> object with the specified <em class="parameter"><code>name</code></em> and
 <em class="parameter"><code>addr</code></em>.
 </p>
 <div class="variablelist"><table border="0">
@@ -97,7 +97,8 @@ Creates a new <a class="link" href="InternetAddress.html" title="InternetAddress
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new <a class="link" href="InternetAddressMailbox.html" title="InternetAddressMailbox"><span class="type">InternetAddressMailbox</span></a> object.</td>
+<td>a new <a class="link" href="InternetAddressMailbox.html" title="InternetAddressMailbox"><span class="type">InternetAddressMailbox</span></a> object.
+Note: The <em class="parameter"><code>name</code></em> string should be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>

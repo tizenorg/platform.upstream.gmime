@@ -469,8 +469,9 @@ Removes the mime part at position <em class="parameter"><code>index</code></em> 
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the mime part that was removed or <code class="literal">NULL</code> if the part was
-not contained within the multipart.</td>
+<td>the mime part that was removed or <code class="literal">NULL</code>
+if the part was not contained within the multipart. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -502,8 +503,9 @@ Replaces the mime part at position <em class="parameter"><code>index</code></em>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the mime part that was replaced or <code class="literal">NULL</code> if the part was
-not contained within the multipart.</td>
+<td>the mime part that was replaced or <code class="literal">NULL</code>
+if the part was not contained within the multipart. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -529,7 +531,8 @@ Gets the mime part at position <em class="parameter"><code>index</code></em> wit
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the mime part at position <em class="parameter"><code>index</code></em>.</td>
+<td>the mime part at position <em class="parameter"><code>index</code></em>. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -553,7 +556,9 @@ Recursively calls <em class="parameter"><code>callback</code></em> on each of <e
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>function to call for each of <em class="parameter"><code>multipart</code></em>'s subparts.</td>
+<td>function to call for each of <em class="parameter"><code>multipart</code></em>'s
+subparts. <span class="annotation">[<a href="http://foldoc.org/scope%20call"><span class="acronym">scope call</span></a>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -585,8 +590,9 @@ multipart <em class="parameter"><code>multipart</code></em>.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="GMimeObject.html" title="GMimeObject"><span class="type">GMimeObject</span></a> whose content-id matches the search string,
-or <code class="literal">NULL</code> if a match cannot be found.</td>
+<td>the <a class="link" href="GMimeObject.html" title="GMimeObject"><span class="type">GMimeObject</span></a> whose content-id matches
+the search string, or <code class="literal">NULL</code> if a match cannot be found. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>

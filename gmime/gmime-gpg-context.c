@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*  GMime
- *  Copyright (C) 2000-2012 Jeffrey Stedfast
+ *  Copyright (C) 2000-2014 Jeffrey Stedfast
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public License
@@ -412,7 +412,17 @@ static void
 gpg_ctx_set_mode (struct _GpgCtx *gpg, enum _GpgCtxMode mode)
 {
 	gpg->mode = mode;
-	gpg->need_passwd = ((gpg->mode == GPG_CTX_MODE_SIGN) || (gpg->mode == GPG_CTX_MODE_DECRYPT) || (gpg->mode == GPG_CTX_MODE_SIGN_ENCRYPT));
+	
+	switch (gpg->mode) {
+	case GPG_CTX_MODE_SIGN_ENCRYPT:
+	case GPG_CTX_MODE_DECRYPT:
+	case GPG_CTX_MODE_SIGN:
+		gpg->need_passwd = TRUE;
+		break;
+	default:
+		gpg->need_passwd = FALSE;
+		break;
+	}
 }
 
 static void
@@ -1561,7 +1571,7 @@ gpg_ctx_op_step (struct _GpgCtx *gpg, GError **err)
 		char buffer[4096];
 		ssize_t nread;
 		
-		d(printf ("reading from gpg's status-fd...\n"));
+		d(printf ("reading gpg's status-fd...\n"));
 		
 		do {
 			nread = read (gpg->status_fd, buffer, sizeof (buffer));
@@ -2192,7 +2202,7 @@ gpg_export_keys (GMimeCryptoContext *context, GPtrArray *keys, GMimeStream *ostr
  *
  * Creates a new gpg crypto context object.
  *
- * Returns: a new gpg crypto context object.
+ * Returns: (transfer full): a new gpg crypto context object.
  **/
 GMimeCryptoContext *
 g_mime_gpg_context_new (GMimePasswordRequestFunc request_passwd, const char *path)

@@ -172,12 +172,18 @@ no (<code class="literal">FALSE</code>).
 Set the sender's name and address on the MIME Message.
 (ex: "\"Joe Sixpack\" &lt;joe<em class="parameter"><code>sixpack.org</code></em>&gt;")
 </p>
+<p>
+Note: The <em class="parameter"><code>sender</code></em> string should be the raw encoded email
+address. It is probably best to use an <a class="link" href="InternetAddress.html" title="InternetAddress"><span class="type">InternetAddress</span></a> to
+construct and encode this value.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message to change</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>sender</code></em> :</span></p></td>
@@ -198,11 +204,14 @@ Gets the email address of the sender from <em class="parameter"><code>message</c
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the sender's name and address of the MIME Message.</td>
+<td>the sender's name and address of the <em class="parameter"><code>message</code></em> in a form
+suitable for display or <code class="literal">NULL</code> if no sender is set. If not <code class="literal">NULL</code>,
+the returned string will be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -213,14 +222,20 @@ Gets the email address of the sender from <em class="parameter"><code>message</c
 <pre class="programlisting"><span class="returnvalue">void</span>                g_mime_message_set_reply_to         (<em class="parameter"><code><a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a> *message</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *reply_to</code></em>);</pre>
 <p>
-Set the sender's Reply-To address on the MIME Message.
+Set the sender's Reply-To address on the <em class="parameter"><code>message</code></em>.
+</p>
+<p>
+Note: The <em class="parameter"><code>reply_to</code></em> string should be the raw encoded email
+address. It is probably best to use an <a class="link" href="InternetAddress.html" title="InternetAddress"><span class="type">InternetAddress</span></a> to
+construct and encode this value.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message to change</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>reply_to</code></em> :</span></p></td>
@@ -241,11 +256,14 @@ Gets the Reply-To address from <em class="parameter"><code>message</code></em>.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the sender's Reply-To address from the MIME Message.</td>
+<td>the sender's Reply-To address in a form suitable for
+display or <code class="literal">NULL</code> if no Reply-To address is set. If not <code class="literal">NULL</code>, the
+returned string will be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -258,14 +276,18 @@ Gets the Reply-To address from <em class="parameter"><code>message</code></em>.
                                                          <em class="parameter"><code>const <span class="type">char</span> *name</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *addr</code></em>);</pre>
 <p>
-Add a recipient of a chosen type to the MIME Message.
+Add a recipient of a chosen type to the MIME message.
+</p>
+<p>
+Note: The <em class="parameter"><code>name</code></em> (and <em class="parameter"><code>addr</code></em>) strings should be in UTF-8.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message to change</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
@@ -289,14 +311,15 @@ Add a recipient of a chosen type to the MIME Message.
 <pre class="programlisting"><a class="link" href="InternetAddressList.html" title="InternetAddressList"><span class="returnvalue">InternetAddressList</span></a> * g_mime_message_get_recipients     (<em class="parameter"><code><a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a> *message</code></em>,
                                                          <em class="parameter"><code><a class="link" href="GMimeMessage.html#GMimeRecipientType" title="enum GMimeRecipientType"><span class="type">GMimeRecipientType</span></a> type</code></em>);</pre>
 <p>
-Gets a list of recipients of type <em class="parameter"><code>type</code></em> from <em class="parameter"><code>message</code></em>.
+Gets a list of recipients of the specified <em class="parameter"><code>type</code></em> from the <em class="parameter"><code>message</code></em>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
@@ -305,8 +328,9 @@ Gets a list of recipients of type <em class="parameter"><code>type</code></em> f
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a list of recipients of a chosen type from the MIME
-Message.</td>
+<td>a list of recipients of the specified
+<em class="parameter"><code>type</code></em> from the <em class="parameter"><code>message</code></em>. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -323,12 +347,15 @@ Gets the complete list of recipients for <em class="parameter"><code>message</co
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a newly allocated <a class="link" href="InternetAddressList.html" title="InternetAddressList"><span class="type">InternetAddressList</span></a> containing all
-recipients of the message or <code class="literal">NULL</code> if no recipients are set.</td>
+<td>a newly allocated <a class="link" href="InternetAddressList.html" title="InternetAddressList"><span class="type">InternetAddressList</span></a>
+containing all recipients of the message or <code class="literal">NULL</code> if no recipients
+are set. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -339,14 +366,18 @@ recipients of the message or <code class="literal">NULL</code> if no recipients 
 <pre class="programlisting"><span class="returnvalue">void</span>                g_mime_message_set_subject          (<em class="parameter"><code><a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a> *message</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *subject</code></em>);</pre>
 <p>
-Set the unencoded UTF-8 Subject field on a MIME Message.
+Set the subject of a <em class="parameter"><code>message</code></em>.
+</p>
+<p>
+Note: The <em class="parameter"><code>subject</code></em> string should be in UTF-8.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>subject</code></em> :</span></p></td>
@@ -360,18 +391,21 @@ Set the unencoded UTF-8 Subject field on a MIME Message.
 <a name="g-mime-message-get-subject"></a><h3>g_mime_message_get_subject ()</h3>
 <pre class="programlisting">const <span class="returnvalue">char</span> *        g_mime_message_get_subject          (<em class="parameter"><code><a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a> *message</code></em>);</pre>
 <p>
-Gets the message's subject.
+Gets the subject of the <em class="parameter"><code>message</code></em>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the unencoded UTF-8 Subject field on a MIME Message.</td>
+<td>the subject of the <em class="parameter"><code>message</code></em> in a form suitable for display
+or <code class="literal">NULL</code> if no subject is set. If not <code class="literal">NULL</code>, the returned string
+will be in UTF-8.</td>
 </tr>
 </tbody>
 </table></div>
@@ -390,7 +424,8 @@ Sets the Date header on a MIME Message.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>date</code></em> :</span></p></td>
@@ -419,15 +454,18 @@ non-<code class="literal">NULL</code>, then the timezone offset in will be store
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>date</code></em> :</span></p></td>
-<td>pointer to a date in time_t</td>
+<td>pointer to a date in time_t. <span class="annotation">[<a href="http://foldoc.org/out"><span class="acronym">out</span></a>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>tz_offset</code></em> :</span></p></td>
-<td>pointer to timezone offset (in +/- hours)</td>
+<td>pointer to timezone offset (in +/- hours). <span class="annotation">[<a href="http://foldoc.org/out"><span class="acronym">out</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -445,7 +483,8 @@ Sets the sent-date of the message.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>str</code></em> :</span></p></td>
@@ -466,7 +505,8 @@ Gets the message's sent-date in string format.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
@@ -488,7 +528,8 @@ Set the Message-Id on a message.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message_id</code></em> :</span></p></td>
@@ -509,7 +550,8 @@ Gets the Message-Id header of <em class="parameter"><code>message</code></em>.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
@@ -531,7 +573,8 @@ Set the root-level MIME part of the message.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>mime_part</code></em> :</span></p></td>
@@ -552,11 +595,13 @@ Gets the toplevel MIME part contained within <em class="parameter"><code>message
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the toplevel MIME part of <em class="parameter"><code>message</code></em>.</td>
+<td>the toplevel MIME part of <em class="parameter"><code>message</code></em>. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -575,12 +620,14 @@ Recursively calls <em class="parameter"><code>callback</code></em> on each of th
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>a <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>function to call on each of the mime parts contained by the mime message</td>
+<td>function to call on each of the mime parts
+contained by the mime message. <span class="annotation">[<a href="http://foldoc.org/scope%20call"><span class="acronym">scope call</span></a>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -602,15 +649,17 @@ message.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>MIME Message</td>
+<td>A <a class="link" href="GMimeMessage.html" title="GMimeMessage"><span class="type">GMimeMessage</span></a>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="GMimeObject.html" title="GMimeObject"><span class="type">GMimeObject</span></a> containing the textual content that appears
-to be the main body of the message.
+<td>a <a class="link" href="GMimeObject.html" title="GMimeObject"><span class="type">GMimeObject</span></a> containing the textual
+content that appears to be the main body of the message.
 Note: This function is NOT guarenteed to always work as it
 makes some assumptions that are not necessarily true. It is
-recommended that you traverse the MIME structure yourself.</td>
+recommended that you traverse the MIME structure yourself. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>

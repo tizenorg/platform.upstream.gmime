@@ -1,7 +1,172 @@
-2015-01-23  Sunghyun Kwon     <sh0701.kwon@samsung.com>
+2014-02-19  Jeffrey Stedfast  <fejj@gnome.org>
 
-    * gmime/gmime-gpg-context.c (gpg_ctx_set_mode): Added the condition
-    (GPG_CTX_MODE_SIGN_ENCRYPT) 
+	* README: Bumped version
+
+	* configure.ac: Bumped version to 2.6.20
+
+2014-02-19  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-parser.c (parser_scan_content): Improved performance
+	by using a SIMD hack when scanning for the end of a line.
+
+2014-02-19  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-message.c (message_remove_header): Don't clear the
+	mime_part header stream unless we actually remove a header.
+	(message_write_to_stream): Only add nwritten to the total if we've
+	written a MIME-Version header.
+
+2013-12-29  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-object.c
+	(g_mime_object_set_content_disposition_parameter): Unref the
+	disposition. Thanks to Mario Theodoridis for this patch.
+
+2013-11-02  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-message.c (write_references): Don't write out 2
+	spaces between the ':' and the first message-id. Fixes bug
+	#711305.
+
+2013-10-19  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* README: Bumped version
+
+	* configure.ac: Bumped version to 2.6.19
+
+2013-09-29  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-message.c (write_references): Custom writer for
+	References headers so that individual msgid tokens do not get
+	folded. Fixes bug #709031.
+
+2013-09-26  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime.c (g_mime_init): Initialize the mutexes
+	earlier. Fixes bug #708818.
+
+2013-09-15  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* README: Bumped version
+
+	* configure.ac: Bumped version to 2.6.18
+
+2013-08-21  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-part.c (write_content): Reset the content stream
+	after writing it.
+
+2013-08-14  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-filter-html.c (citation_depth): Fixed an ABR by
+	passing in an inend parameter.
+
+2013-08-12  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-stream-file.c (g_mime_stream_file_new_for_path): New
+	convenience function that handles opening the file for you.
+
+	* gmime/gmime-stream-fs.c (g_mime_stream_fs_new_for_path): New
+	convenience function that handles opening the file for you.
+
+2013-08-11  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-message.c (g_mime_message_set_reply_to): Fixed this
+	function to parse the reply_to string just like
+	g_mime_message_set_sender() does so that the reply_to field can be
+	guaranteed to be in UTF-8.
+
+	* gmime/*.c: Updated API documentation for functions taking or
+	returning strings to clarify whether the strings should be in
+	UTF-8 or not.
+
+2013-08-10  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* mono/GMime.metadata: Various fixups to get rid of warnings.
+
+	* gmime/gmime.c (g_mime_init): Don't call g_type_init() if glib >=
+	2.35.1
+
+2013-08-08  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/internet-address.c (decode_address): Properly deal with
+	obsolete routing information.
+
+2013-08-08  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* README: Bumped version
+
+	* configure.ac: Bumped version to 2.6.17
+
+2013-08-08  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-parser.c (parser_content_type): If no Content-Type
+	header exists and the parent is a multipart/digest, default to
+	message/rfc822 instead of text/plain.
+	(parser_construct_leaf_part): If the Content-Type header didn't
+	exist, use the default content-type values instead of assuming
+	text/plain.
+
+2013-08-07  Jeffrey Stedfast  <fejj@gnome.org>
+
+	According to Rfc2046 Section 5.1.1, boundary markers may optionally
+	be followed by lwsp.
+
+	* gmime/gmime-parser.c (is_boundary): New convenience function to
+	check that the text matches a boundary, possibly followed by lwsp.
+	(check_boundary): Use is_boundary().
+	(found_immediate_boundary): Use is_boundary().
+
+	Fixes bug #705612
+
+2013-07-02  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-stream-cat.c (stream_substream): Fixed to properly
+	handle a 0-byte substream at the end of the very last source
+	stream. Fixes bug #701572.
+
+2013-06-30  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* README: Bumped version
+
+	* configure.ac: Bumped version to 2.6.16
+
+2013-06-30  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-gpg-context.c (gpg_ctx_set_mode):
+	GPG_CTX_MODE_SIGN_ENCRYPT also requires a passphrase.
+
+2013-05-05  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-filter-best.c (filter_filter): Reset the linelen
+	state to 0 when we encounter a '\n'.
+
+2013-05-04  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-part-iter.c: Modified to work for non-multipart
+	messages.
+
+2013-05-04  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-utils.c (rfc2047_encode): Respect the new
+	GMIME_ENABLE_USE_ONLY_USER_CHARSETS initialization flag.
+
+	* gmime/gmime.h: Define a new GMIME_ENABLE_USE_ONLY_USER_CHARSETS
+	initialization flag.
+
+2013-04-05  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-utils.c (header_fold_tokens): New internal function
+	that replaces the older header_fold() function. This new one uses
+	the rfc2047 tokenizer so that we share the same rfc2047 workaround
+	logic in the tokenizer.
+
+	Fixes bug #697407
+
+2013-02-23  Jeffrey Stedfast  <fejj@gnome.org>
+
+	* gmime/gmime-filter-html.c: Disable g_warnings unless warnings
+	are enabled in the build.
 
 2013-02-19  Jeffrey Stedfast  <fejj@gnome.org>
 

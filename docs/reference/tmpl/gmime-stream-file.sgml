@@ -46,6 +46,16 @@ gmime-stream-file
 @Returns: 
 
 
+<!-- ##### FUNCTION g_mime_stream_file_new_for_path ##### -->
+<para>
+
+</para>
+
+@path: 
+@mode: 
+@Returns: 
+
+
 <!-- ##### FUNCTION g_mime_stream_file_get_owner ##### -->
 <para>
 

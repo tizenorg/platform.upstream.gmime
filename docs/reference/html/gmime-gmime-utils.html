@@ -51,7 +51,7 @@ const <a class="link" href="gmime-gmime-utils.html#GMimeReferences" title="struc
                                                          <em class="parameter"><code>const <span class="type">char</span> *msgid</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-utils.html#g-mime-references-clear" title="g_mime_references_clear ()">g_mime_references_clear</a>             (<em class="parameter"><code><a class="link" href="gmime-gmime-utils.html#GMimeReferences" title="struct GMimeReferences"><span class="type">GMimeReferences</span></a> **refs</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="gmime-gmime-utils.html#g-mime-references-free" title="g_mime_references_free ()">g_mime_references_free</a>              (<em class="parameter"><code><a class="link" href="gmime-gmime-utils.html#GMimeReferences" title="struct GMimeReferences"><span class="type">GMimeReferences</span></a> *refs</code></em>);
-<span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-fold" title="g_mime_utils_header_fold ()">g_mime_utils_header_fold</a>            (<em class="parameter"><code>const <span class="type">char</span> *str</code></em>);
+<span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-fold" title="g_mime_utils_header_fold ()">g_mime_utils_header_fold</a>            (<em class="parameter"><code>const <span class="type">char</span> *header</code></em>);
 <span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-printf" title="g_mime_utils_header_printf ()">g_mime_utils_header_printf</a>          (<em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
                                                          <em class="parameter"><code>...</code></em>);
 <span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-quote-string" title="g_mime_utils_quote_string ()">g_mime_utils_quote_string</a>           (<em class="parameter"><code>const <span class="type">char</span> *str</code></em>);
@@ -66,9 +66,9 @@ const <a class="link" href="gmime-gmime-utils.html#GMimeReferences" title="struc
 <span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-text" title="g_mime_utils_header_encode_text ()">g_mime_utils_header_encode_text</a>     (<em class="parameter"><code>const <span class="type">char</span> *text</code></em>);
 <span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-decode-phrase" title="g_mime_utils_header_decode_phrase ()">g_mime_utils_header_decode_phrase</a>   (<em class="parameter"><code>const <span class="type">char</span> *phrase</code></em>);
 <span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-header-encode-phrase" title="g_mime_utils_header_encode_phrase ()">g_mime_utils_header_encode_phrase</a>   (<em class="parameter"><code>const <span class="type">char</span> *phrase</code></em>);
-<span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-structured-header-fold" title="g_mime_utils_structured_header_fold ()">g_mime_utils_structured_header_fold</a> (<em class="parameter"><code>const <span class="type">char</span> *str</code></em>);
+<span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-structured-header-fold" title="g_mime_utils_structured_header_fold ()">g_mime_utils_structured_header_fold</a> (<em class="parameter"><code>const <span class="type">char</span> *header</code></em>);
 <span class="returnvalue">char</span> *              <a class="link" href="gmime-gmime-utils.html#g-mime-utils-unstructured-header-fold" title="g_mime_utils_unstructured_header_fold ()">g_mime_utils_unstructured_header_fold</a>
-                                                        (<em class="parameter"><code>const <span class="type">char</span> *str</code></em>);
+                                                        (<em class="parameter"><code>const <span class="type">char</span> *header</code></em>);
 </pre>
 </div>
 <div class="refsect1">
@@ -123,7 +123,8 @@ Decodes the rfc822 date string and saves the GMT offset into
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>tz_offset</code></em> :</span></p></td>
-<td>timezone offset</td>
+<td>timezone offset. <span class="annotation">[<a href="http://foldoc.org/out"><span class="acronym">out</span></a>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
@@ -323,7 +324,7 @@ Frees the <a class="link" href="gmime-gmime-utils.html#GMimeReferences" title="s
 <hr>
 <div class="refsect2">
 <a name="g-mime-utils-header-fold"></a><h3>g_mime_utils_header_fold ()</h3>
-<pre class="programlisting"><span class="returnvalue">char</span> *              g_mime_utils_header_fold            (<em class="parameter"><code>const <span class="type">char</span> *str</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              g_mime_utils_header_fold            (<em class="parameter"><code>const <span class="type">char</span> *header</code></em>);</pre>
 <p>
 Folds a structured header according to the rules in rfc822.
 </p>
@@ -331,12 +332,14 @@ Folds a structured header according to the rules in rfc822.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>str</code></em> :</span></p></td>
-<td>input string</td>
+<td><p><span class="term"><em class="parameter"><code>header</code></em> :</span></p></td>
+<td>header field and value string</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an allocated string containing the folded header.</td>
+<td>an allocated string containing the folded header.
+WARNING: This function is obsolete. Use
+<a class="link" href="gmime-gmime-utils.html#g-mime-utils-structured-header-fold" title="g_mime_utils_structured_header_fold ()"><code class="function">g_mime_utils_structured_header_fold()</code></a> instead.</td>
 </tr>
 </tbody>
 </table></div>
@@ -479,7 +482,9 @@ into question-marks (?) in the returned string buffer.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
-<td>input text in unknown 8bit/multibyte character set</td>
+<td>input text in
+unknown 8bit/multibyte character set. <span class="annotation">[<a href="http://foldoc.org/array"><span class="acronym">array</span></a> length=len][<a href="http://foldoc.org/element-type"><span class="acronym">element-type</span></a> guint8]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>len</code></em> :</span></p></td>
@@ -593,7 +598,7 @@ addresses.</td>
 <hr>
 <div class="refsect2">
 <a name="g-mime-utils-structured-header-fold"></a><h3>g_mime_utils_structured_header_fold ()</h3>
-<pre class="programlisting"><span class="returnvalue">char</span> *              g_mime_utils_structured_header_fold (<em class="parameter"><code>const <span class="type">char</span> *str</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              g_mime_utils_structured_header_fold (<em class="parameter"><code>const <span class="type">char</span> *header</code></em>);</pre>
 <p>
 Folds a structured header according to the rules in rfc822.
 </p>
@@ -601,8 +606,8 @@ Folds a structured header according to the rules in rfc822.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>str</code></em> :</span></p></td>
-<td>input string</td>
+<td><p><span class="term"><em class="parameter"><code>header</code></em> :</span></p></td>
+<td>header field and value string</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
@@ -615,7 +620,7 @@ Folds a structured header according to the rules in rfc822.
 <div class="refsect2">
 <a name="g-mime-utils-unstructured-header-fold"></a><h3>g_mime_utils_unstructured_header_fold ()</h3>
 <pre class="programlisting"><span class="returnvalue">char</span> *              g_mime_utils_unstructured_header_fold
-                                                        (<em class="parameter"><code>const <span class="type">char</span> *str</code></em>);</pre>
+                                                        (<em class="parameter"><code>const <span class="type">char</span> *header</code></em>);</pre>
 <p>
 Folds an unstructured header according to the rules in rfc822.
 </p>
@@ -623,8 +628,8 @@ Folds an unstructured header according to the rules in rfc822.
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>str</code></em> :</span></p></td>
-<td>input string</td>
+<td><p><span class="term"><em class="parameter"><code>header</code></em> :</span></p></td>
+<td>header field and value string</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
