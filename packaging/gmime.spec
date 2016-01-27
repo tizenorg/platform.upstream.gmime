@@ -22,8 +22,16 @@ Release: 2
 License: LGPL-2.1+
 Group: Development/Libraries
 URL: http://spruce.sourceforge.net/gmime/
-
 Source: gmime-%{version}.tar.bz2
+
+%if "%{?profile}" == "wearable"
+ExcludeArch: %{arm} %ix86 x86_64
+%endif
+
+%if "%{?profile}" == "tv"
+ExcludeArch: %{arm} %ix86 x86_64
+%endif
+
 Requires: glib2 >= 2.12.0
 BuildRequires: glib2-devel >= 2.12.0
 BuildRequires:  pkgconfig(glib-2.0)
