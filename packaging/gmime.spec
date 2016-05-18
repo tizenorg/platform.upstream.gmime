@@ -22,11 +22,8 @@ Release: 2
 License: LGPL-2.1+
 Group: Development/Libraries
 URL: http://spruce.sourceforge.net/gmime/
-Source: gmime-%{version}.tar.bz2
-
-%if "%{?profile}" == "wearable"
-ExcludeArch: %{arm} %ix86 x86_64
-%endif
+Source0: gmime-%{version}.tar.bz2
+Source1: gmime.manifest
 
 %if "%{?profile}" == "tv"
 ExcludeArch: %{arm} %ix86 x86_64
@@ -75,7 +72,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-, root, root)
-
+%manifest gmime.manifest
 #%doc doc/html/* AUTHORS ChangeLog NEWS README COPYING TODO
 #%{_prefix}/bin/*
 #%{_prefix}/lib/*.sh
